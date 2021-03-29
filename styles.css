@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+body {
+  margin: 0;
+  font-family: Open Sans, Helvetica, Arial;
+
+  background-image: linear-gradient(300deg, cyan, white); /* W3C */
+  background-image: -moz-linear-gradient(300deg, cyan, white); /*Mozilla*/
+  background-image: -webkit-linear-gradient(
+    300deg,
+    cyan,
+    white
+  ); /*chrome 10+ and Safari5.1*/
+  background-image: -webkit-gradient(
+    linear,
+    300deg,
+    cyan,
+    white
+  ); /*Chrome, Safari4*/
+  /* to avoid linear gradient repeat */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+#container {
+  /* CENTERING DIV ON A SCREEN */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+#regForm {
+  /* display: inline-block; */
+  /* justify-content: center; */
+  padding: 5px;
+  box-sizing: border-box;
+  width: 500px;
+  height: 600px;
+  background-color: white;
+}
+.nameSeparator {
+  align-items: flex-end;
+}
+.inputBox {
+  /* Removes borders except bottom */
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  outline: none;
+}
+.inputSeparator > .sName {
+  width: 100px;
+}
+
+.inputSeparator {
+  padding-bottom: 5px;
+  /* display: block; */
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sGender,
+.bDay {
+  width: 50%;
+  font-size: 20px;
+}
+.inputBox {
+  box-sizing: border-box;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  margin: 5px;
+}

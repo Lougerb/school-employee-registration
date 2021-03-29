@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Employee Registration</title>
+  </head>
+  <body>
+    <div id="container">
+      <form id="regForm">
+        <div class="inputSeparator nameSeparator">
+          <input
+            type="text"
+            placeholder="Last Name"
+            class="inputBox nameInput"
+          />,
+          <input
+            type="text"
+            placeholder="First Name"
+            class="inputBox nameInput"
+          />
+          <input
+            type="text"
+            placeholder="Middle Name"
+            class="inputBox nameInput"
+          />
+          <select class="inputBox sName">
+            <option>Suffix</option>
+            <option>Jr.</option>
+            <option>Sr.</option>
+          </select>
+        </div>
+        <div class="inputSeparator">
+          <input type="date" placeholder="MM/DD/YY" class="inputBox bDay" />
+          <select class="inputBox sGender">
+            Gender
+            <option value="" disabled selected>Select</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Others</option>
+          </select>
+        </div>
+        <div class="inputSeparator">
+          <input type="email" placeholder="Email" class="inputBox eMail" />
+        </div>
+        <div class="inputSeparator">
+          <input
+            type="text"
+            placeholder="Position"
+            class="inputBox nameInput"
+          />
+          <input
+            type="text"
+            placeholder="ID Number"
+            class="inputBox nameInput"
+          />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
