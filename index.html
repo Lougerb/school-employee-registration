@@ -8,6 +8,7 @@
     <title>Employee Registration</title>
   </head>
   <body>
+    <header><h1>Employee Registration</h1></header>
     <div id="container">
       <form id="regForm">
         <div class="inputSeparator nameSeparator">
@@ -15,26 +16,34 @@
             type="text"
             placeholder="Last Name"
             class="inputBox nameInput"
+            id="lName"
           />,
           <input
             type="text"
             placeholder="First Name"
             class="inputBox nameInput"
+            id="fName"
           />
           <input
             type="text"
             placeholder="Middle Name"
             class="inputBox nameInput"
+            id="mName"
           />
-          <select class="inputBox sName">
+          <select class="inputBox sName" id="sName">
             <option>Suffix</option>
             <option>Jr.</option>
             <option>Sr.</option>
           </select>
         </div>
         <div class="inputSeparator">
-          <input type="date" placeholder="MM/DD/YY" class="inputBox bDay" />
-          <select class="inputBox sGender">
+          <input
+            type="date"
+            placeholder="MM/DD/YY"
+            class="inputBox bDay"
+            id="bDay"
+          />
+          <select class="inputBox sGender" id="sGender">
             Gender
             <option value="" disabled selected>Select</option>
             <option>Male</option>
@@ -43,21 +52,52 @@
           </select>
         </div>
         <div class="inputSeparator">
-          <input type="email" placeholder="Email" class="inputBox eMail" />
+          <input
+            type="email"
+            placeholder="Email"
+            class="inputBox eMail"
+            id="eMail"
+          />
         </div>
         <div class="inputSeparator">
           <input
             type="text"
             placeholder="Position"
             class="inputBox nameInput"
+            id="jPosition"
           />
           <input
             type="text"
             placeholder="ID Number"
             class="inputBox nameInput"
+            id="eIDNumber"
           />
         </div>
+        <div class="inputSeparator">
+          <button class="clearButton formBtn">Clear</button>
+          <button type="submit" class="subButton formBtn">Submit</button>
+        </div>
       </form>
+    </div>
+    <div id="eListContainer">
+      <table id="empTable">
+        <thead>
+          <tr id="tLabel">
+            <th>Employee ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="dataRow">
+            <th>20210101</th>
+            <th>Juan Juanito D. Dela Cruz</th>
+            <th>sample@company.com</th>
+            <th>*</th>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </body>
 </html>
