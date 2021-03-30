@@ -31,7 +31,8 @@
             id="mName"
           />
           <select class="inputBox sName" id="sName">
-            <option>Suffix</option>
+            <option disabled selected>Suffix</option>
+            <option value="">None</option>
             <option>Jr.</option>
             <option>Sr.</option>
           </select>
@@ -89,7 +90,7 @@
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="empInfo">
           <tr class="dataRow">
             <th>20210101</th>
             <th>Juan Juanito D. Dela Cruz</th>
@@ -99,5 +100,6 @@
         </tbody>
       </table>
     </div>
+    <script src="reg-script.js"></script>
   </body>
 </html>
