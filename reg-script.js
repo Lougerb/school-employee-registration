@@ -18,28 +18,66 @@ regSubBtn.addEventListener("click", function (e) {
   const getMName = document.querySelector("#mName");
   const getSName = document.querySelector("#sName");
   const getEmpID = document.querySelector("#eIDNumber");
-  const getEmail = document.querySelector("#eMail");
   const getPosition = document.querySelector("#jPosition");
+  const getEmail = document.querySelector("#eMail");
+  const getDOB = document.querySelector("#bDay");
+  const getGender = document.querySelector("#sGender");
+  const getStatus = document.querySelector("#sStatus");
+  const getLTeach = document.querySelector("#lTeach");
+  const getSubject = document.querySelector("#posSubject");
 
   const parentTable = document.querySelector("#empInfo");
   const newEmpRow = document.createElement("tr");
   const newEmpID = document.createElement("th");
+  const newPosition = document.createElement("th");
   const newFullName = document.createElement("th");
-  const newEmail = document.createElement("th");
+  //   const newEmail = document.createElement("th"); //Optional
   const newActionBtn = document.createElement("th"); //Must be Button
 
   parentTable.appendChild(newEmpRow);
   newEmpRow.appendChild(newEmpID);
   newEmpRow.appendChild(newFullName);
-  newEmpRow.appendChild(newEmail);
+  newEmpRow.appendChild(newPosition);
   newEmpRow.appendChild(newActionBtn);
 
   newEmpRow.classList.add("dataRow");
 
-  newEmpID.textContent = getEmpID.value;
+  newPosition.textContent = getPosition.value;
   newFullName.textContent = `${getFName.value} ${getMName.value[0]}. ${getLName.value} ${getSName.value}`;
-  newEmail.textContent = getEmail.value;
+  newEmpID.textContent = getEmpID.value;
   newActionBtn.textContent = "*";
+
+  //clearing after submitting
+  //   getLName.value = "";
+  //   getFName.value = "";
+  //   getMName.value = "";
+  //   getSName.value = "";
+  //   getEmpID.value = "";
+  //   getPosition.value = "";
+  //   getEmail.value = "";
+  //   getDOB.value = "";
+  //   getGender.value = "";
+  //   getStatus.value = "";
+  //   getLTeach.value = "";
+  //   getSubject.value = "";
 
   //   console.log(getLName.value[0]);
 });
+
+//Object
+const regEmployees = {
+  employeeID: {
+    202100101: {
+      Name: {
+        _fName: "Louein Gerald",
+        _mName: "Sabalza",
+        _lName: "Baling",
+        _sName: "",
+      },
+      DOB: `03 / 03 / 1997`,
+      Gender: "Male",
+      Email: "lgbaling@company.com",
+      Position: "Front End Developer",
+    },
+  },
+};

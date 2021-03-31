@@ -37,7 +37,7 @@ display: flex;
   /* justify-content: center; */
   padding: 5px;
   box-sizing: border-box;
-  width: 500px;
+  width: 600px;
   background-color: white;
   box-shadow: 0 2px 6px 0.1px black;
 }
@@ -63,9 +63,10 @@ display: flex;
 }
 
 .sGender,
-.bDay {
-  width: 50%;
-  font-size: 20px;
+.bDay,
+.sStatus {
+  /* width: 50%; */
+  font-size: 15px;
 }
 .inputBox {
   box-sizing: border-box;
