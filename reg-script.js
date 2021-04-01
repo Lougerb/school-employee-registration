@@ -11,7 +11,7 @@ let empNum = 0;
 
 const regSubBtn = document.querySelector(".subButton");
 
-regSubBtn.addEventListener("click", function (e) {
+regSubBtn.addEventListener("submit", function (e) {
   e.preventDefault();
   const getLName = document.querySelector("#lName");
   const getFName = document.querySelector("#fName");
