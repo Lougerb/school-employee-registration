@@ -88,6 +88,12 @@ legend {
   /* width: 50%; */
   font-size: 15px;
 }
+.febRemove,
+.thirtyRemove {
+  /* visibility: hidden; */
+  display: none;
+}
+
 .inputBox {
   box-sizing: border-box;
   align-items: center;

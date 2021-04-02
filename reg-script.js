@@ -8,9 +8,9 @@ const currentYear = currentDate.getFullYear();
 
 let batchNum = 0;
 let empNum = 0;
-
 const regSubBtn = document.querySelector(".subButton");
 
+//Submit Button
 regSubBtn.addEventListener("submit", function (e) {
   e.preventDefault();
   const getLName = document.querySelector("#lName");
@@ -19,12 +19,12 @@ regSubBtn.addEventListener("submit", function (e) {
   const getSName = document.querySelector("#sName");
   const getEmpID = document.querySelector("#eIDNumber");
   const getPosition = document.querySelector("#jPosition");
-  const getEmail = document.querySelector("#eMail");
-  const getDOB = document.querySelector("#bDay");
-  const getGender = document.querySelector("#sGender");
-  const getStatus = document.querySelector("#sStatus");
-  const getLTeach = document.querySelector("#lTeach");
-  const getSubject = document.querySelector("#posSubject");
+  // const getEmail = document.querySelector("#eMail");
+  // const getDOB = document.querySelector("#bDay");
+  // const getGender = document.querySelector("#sGender");
+  // const getStatus = document.querySelector("#sStatus");
+  // const getLTeach = document.querySelector("#lTeach");
+  // const getSubject = document.querySelector("#posSubject");
 
   const parentTable = document.querySelector("#empInfo");
   const newEmpRow = document.createElement("tr");
@@ -63,6 +63,37 @@ regSubBtn.addEventListener("submit", function (e) {
 
   //   console.log(getLName.value[0]);
 });
+
+//Month's dates
+const inputMonth = document.getElementById("mmInput");
+const inputDay = document.getElementById("ddInput");
+const generateDay = document.createElement("option");
+const removeDay = document.querySelectorAll(".removeDay");
+
+inputMonth.addEventListener("click", function () {
+  const thirtyOne = ["JAN", "MAR", "MAY", "JUL", "AUG", "OCT", "DEC"];
+  const thirty = ["APR", "JUN", "SEP", "NOV"];
+  for (let t1 = 0; t1 < thirtyOne.length; t1++) {
+    for (let t = 0; t < thirtyOne.length; t++) {
+      for (let i = 0; i < removeDay.length; i++) {
+        if (inputMonth.value === "FEB") {
+          for (let f = 1; f < i + 1; f++) {
+            removeDay[f].classList.add("febRemove");
+          }
+        } else if (inputMonth.value === thirty[t]) {
+          removeDay[i].classList.add("thirtyRemove");
+          removeDay[i].classList.remove("febRemove");
+        } else if (inputMonth.value === thirtyOne[t1]) {
+          removeDay[i].classList.remove("thirtyRemove");
+          removeDay[i].classList.remove("febRemove");
+        }
+      }
+    }
+  }
+});
+
+//Job position
+// const
 
 //Object
 const regEmployees = {
