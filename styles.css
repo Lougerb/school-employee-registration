@@ -132,9 +132,9 @@ legend {
 #empTable tbody > tr:nth-child(even) {
   background: white;
 }
-#empTable tbody > tr {
-  /* width: 20px; */
-}
+/* #empTable tbody > tr {
+  width: 20px;
+} */
 .dataRow > th {
   /* box-sizing: border-box; */
   font-weight: lighter;

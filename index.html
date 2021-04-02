@@ -11,12 +11,14 @@
     <header><h1>Employee Registration</h1></header>
     <div id="container">
       <form id="regForm">
+        <!-- NAME -->
         <div class="inputSeparator nameSeparator">
           <input
             type="text"
             placeholder="Last Name"
             class="inputBox nameInput"
             id="lName"
+            name="nAME"
             required
           />,
           <input
@@ -24,22 +26,25 @@
             placeholder="First Name"
             class="inputBox nameInput"
             id="fName"
-            required
+            name="nAME"
           />
           <input
             type="text"
             placeholder="Middle Name"
             class="inputBox nameInput"
             id="mName"
-            required
+            name="nAME"
           />
-          <select class="inputBox sName" id="sName">
+          <select class="inputBox sName" id="sName" name="nAME">
             <option disabled selected>Suffix</option>
             <option value="">None</option>
             <option>Jr.</option>
             <option>Sr.</option>
           </select>
         </div>
+
+        <!-- DOB/GENDER/STATUS -->
+
         <div class="inputSeparator">
           <!-- <input
             type="date"
@@ -50,27 +55,6 @@
 
           <fieldset id="dobFS">
             <legend>DOB</legend>
-
-            <!-- DOB Input -->
-            <!-- <input
-              type="text"
-              placeholder="MM"
-              class="mmInput dobS"
-              id="mmInput "
-            />
-            <input
-              type="number"
-              placeholder="DD"
-              class="ddInput dobS"
-              id="ddInput"
-            />
-            <input
-              type="number"
-              placeholder="YYYY"
-              class="yyInput dobS"
-              id="yyInput"
-            /> -->
-
             <select class="dobS mmInput" id="mmInput">
               Month
               <option class="mmOption" value="" disabled selected>MM</option>
@@ -233,13 +217,10 @@
             <option>Single</option>
           </select>
         </div>
+
+        <!-- JOB DESC -->
+
         <div class="inputSeparator">
-          <!-- <input
-            type="text"
-            placeholder="Position"
-            class="inputBox nameInput"
-            id="jPosition"
-          /> -->
           <select class="inputBox jPosition" id="jPosition">
             <option value="" disabled selected>Position</option>
             <option class="posTeacher">Teacher</option>
@@ -285,6 +266,7 @@
             <option class="posNotTeacher">Computer</option>
           </select>
         </div>
+        <!-- Email and ID Number -->
         <div class="inputSeparator">
           <input
             type="email"
@@ -300,12 +282,16 @@
             id="eIDNumber"
           />
         </div>
+        <!-- BUTTON -->
         <div class="inputSeparator">
-          <button class="clearButton formBtn">Clear</button>
-          <button type="submit" class="subButton formBtn">Submit</button>
+          <button type="button" class="clearButton formBtn">Clear</button>
+          <button type="submit" class="subButton formBtn" id="submitButton">
+            Submit
+          </button>
         </div>
       </form>
     </div>
+    <!-- ------------------------------------------------------------- -->
     <div id="eListContainer">
       <table id="empTable">
         <thead>
