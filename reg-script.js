@@ -69,29 +69,45 @@ regForm.addEventListener("submit", function (e) {
 });
 
 //Month's dates
-const inputMonth = document.getElementById("mmInput");
+
+///////////FIXXXXXXXXXXXXXXXXXXXXX
+const inputMonth = document.querySelector(".mmInput");
 const inputDay = document.getElementById("ddInput");
 const generateDay = document.createElement("option");
 const removeDay = document.querySelectorAll(".removeDay");
 
+// inputMonth.addEventListener("click", function () {
+//   const thirtyOne = ["JAN", "MAR", "MAY", "JUL", "AUG", "OCT", "DEC"];
+//   const thirty = ["APR", "JUN", "SEP", "NOV"];
+//   for (let t1 = 0; t1 < thirtyOne.length; t1++) {
+//     for (let t = 0; t < thirty.length; t++) {
+//       for (let i = 0; i <= removeDay.length; i++) {
+//         if (inputMonth.value === "FEB") {
+//           removeDay[i].classList.add("febRemove");
+//         } else if (inputMonth.value === thirty[t]) {
+//           removeDay[i].classList.add("thirtyRemove");
+//           removeDay[i].classList.remove("febRemove");
+//         } else if (inputMonth.value === thirtyOne[t1]) {
+//           removeDay[i].classList.remove("thirtyRemove");
+//           removeDay[i].classList.remove("febRemove");
+//         }
+//       }
+//     }
+//   }
+// });
+
 inputMonth.addEventListener("click", function () {
   const thirtyOne = ["JAN", "MAR", "MAY", "JUL", "AUG", "OCT", "DEC"];
   const thirty = ["APR", "JUN", "SEP", "NOV"];
-  for (let t1 = 0; t1 < thirtyOne.length; t1++) {
-    for (let t = 0; t < thirtyOne.length; t++) {
-      for (let i = 0; i < removeDay.length; i++) {
-        if (inputMonth.value === "FEB") {
-          for (let f = 1; f < i + 1; f++) {
-            removeDay[f].classList.add("febRemove");
-          }
-        } else if (inputMonth.value === thirty[t]) {
-          removeDay[i].classList.add("thirtyRemove");
-          removeDay[i].classList.remove("febRemove");
-        } else if (inputMonth.value === thirtyOne[t1]) {
-          removeDay[i].classList.remove("thirtyRemove");
-          removeDay[i].classList.remove("febRemove");
-        }
-      }
+  for (let i = 0; i <= removeDay.length; i++) {
+    if (inputMonth.value === "FEB") {
+      removeDay[i].classList.add("febRemove");
+    } else if (inputMonth.value === "JAN") {
+      removeDay[i].classList.add("thirtyRemove");
+      removeDay[i].classList.remove("febRemove");
+    } else if (inputMonth.value === "APR") {
+      removeDay[i].classList.remove("thirtyRemove");
+      removeDay[i].classList.remove("febRemove");
     }
   }
 });
