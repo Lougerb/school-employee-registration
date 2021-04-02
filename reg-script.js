@@ -70,44 +70,44 @@ regForm.addEventListener("submit", function (e) {
 
 //Month's dates
 
-///////////FIXXXXXXXXXXXXXXXXXXXXX
 const inputMonth = document.querySelector(".mmInput");
 const inputDay = document.getElementById("ddInput");
-const generateDay = document.createElement("option");
-const removeDay = document.querySelectorAll(".removeDay");
 
-// inputMonth.addEventListener("click", function () {
-//   const thirtyOne = ["JAN", "MAR", "MAY", "JUL", "AUG", "OCT", "DEC"];
-//   const thirty = ["APR", "JUN", "SEP", "NOV"];
-//   for (let t1 = 0; t1 < thirtyOne.length; t1++) {
-//     for (let t = 0; t < thirty.length; t++) {
-//       for (let i = 0; i <= removeDay.length; i++) {
-//         if (inputMonth.value === "FEB") {
-//           removeDay[i].classList.add("febRemove");
-//         } else if (inputMonth.value === thirty[t]) {
-//           removeDay[i].classList.add("thirtyRemove");
-//           removeDay[i].classList.remove("febRemove");
-//         } else if (inputMonth.value === thirtyOne[t1]) {
-//           removeDay[i].classList.remove("thirtyRemove");
-//           removeDay[i].classList.remove("febRemove");
-//         }
-//       }
-//     }
-//   }
-// });
-
-inputMonth.addEventListener("click", function () {
+//We use "Change" for Select Tag event listener
+//Change number of dates in a certain Months
+inputMonth.addEventListener("change", function () {
   const thirtyOne = ["JAN", "MAR", "MAY", "JUL", "AUG", "OCT", "DEC"];
   const thirty = ["APR", "JUN", "SEP", "NOV"];
-  for (let i = 0; i <= removeDay.length; i++) {
-    if (inputMonth.value === "FEB") {
-      removeDay[i].classList.add("febRemove");
-    } else if (inputMonth.value === "JAN") {
-      removeDay[i].classList.add("thirtyRemove");
-      removeDay[i].classList.remove("febRemove");
-    } else if (inputMonth.value === "APR") {
-      removeDay[i].classList.remove("thirtyRemove");
-      removeDay[i].classList.remove("febRemove");
+  const removePrevDays = function () {
+    for (let xDays = 31; xDays >= 0; xDays--) {
+      inputDay.innerHTML -= `<option>${xDays}</option>`;
+    }
+  };
+
+  if (inputMonth.value === "FEB") {
+    removePrevDays();
+    for (let febDay = 1; febDay <= 29; febDay++) {
+      document.getElementsByTagName("option");
+      inputDay.innerHTML += `<option>${febDay}</option>`;
+    }
+  }
+
+  for (let monthsWith31 = 0; monthsWith31 <= thirtyOne.length; monthsWith31++) {
+    if (inputMonth.value === thirtyOne[monthsWith31]) {
+      removePrevDays();
+
+      for (let m31 = 1; m31 <= 31; m31++) {
+        inputDay.innerHTML += `<option>${m31}</option>`;
+      }
+    }
+  }
+
+  for (let monthsWith30 = 0; monthsWith30 <= thirty.length; monthsWith30++) {
+    if (inputMonth.value === thirty[monthsWith30]) {
+      removePrevDays();
+      for (let m30 = 1; m30 <= 30; m30++) {
+        inputDay.innerHTML += `<option>${m30}</option>`;
+      }
     }
   }
 });
