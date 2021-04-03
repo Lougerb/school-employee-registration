@@ -2,14 +2,47 @@
 
 //ID number Generator
 //TO BE FIX
-const currentDate = new Date();
-const currentYear = currentDate.getFullYear();
-// console.log(currentYear);
+const currentWholeDate = new Date();
+const currentYear = currentWholeDate.getFullYear();
+// // console.log(currentYear);
 
-let batchNum = 0;
-let empNum = 0;
+// let batchNum = 0;
+let empNum = 1;
 
+// //Employee ID
+// const eIDNumber = document.getElementById("eIDNumber");
+
+//Getting Month's Number
+//We added +1 because January starts with 0
+const currentMonth = currentWholeDate.getMonth() + 1;
+const currentDate = currentWholeDate.getDate();
+const leadingZero = "0";
+//Make single Digit Month to 2 digit with leading Zero
+const _twoDigitMonth = function () {
+  return currentMonth < 10 ? leadingZero + currentMonth : currentMonth;
+};
+//Make Single digit date to 2 digit with leading Zero
+const _twoDigitDate = function () {
+  return currentDate < 10 ? leadingZero + currentDate : currentDate;
+};
+const _twoDigitempNum = function () {
+  return empNum < 10 ? leadingZero + empNum : empNum;
+};
+//Generate ID Number
+eIDNumber.value =
+  String(currentYear).slice(2) +
+  _twoDigitMonth() +
+  _twoDigitDate() +
+  _twoDigitempNum();
+
+//
 const regSubBtn = document.getElementById("submitButton");
+regSubBtn.addEventListener("click", function () {
+  empNum++;
+});
+
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
 
 //addEventListener must listen to the Form INSTEAD of the Submit Button of the form
 const regForm = document.getElementById("regForm");
@@ -21,14 +54,14 @@ regForm.addEventListener("submit", function (e) {
   const getMName = document.querySelector("#mName");
   const getSName = document.querySelector("#sName");
   const getEmpID = document.querySelector("#eIDNumber");
-  const getPosition = document.querySelector("#jPosition");
+  // const getPosition = document.querySelector("#jPosition");
 
   const getEmail = document.querySelector("#eMail");
   // const getDOB = document.querySelector("#bDay");
   const getGender = document.querySelector("#sGender");
   const getStatus = document.querySelector("#sStatus");
   const getLTeach = document.querySelector("#lTeach");
-  const getSubject = document.querySelector("#posSubject");
+  // const getSubject = document.querySelector("#posSubject");
 
   const parentTable = document.querySelector("#empInfo");
   const newEmpRow = document.createElement("tr");
@@ -45,7 +78,7 @@ regForm.addEventListener("submit", function (e) {
 
   newEmpRow.classList.add("dataRow");
 
-  newPosition.textContent = getPosition.value;
+  newPosition.textContent = jPosition.value;
   newFullName.textContent = `${getFName.value} ${getMName.value[0]}. ${getLName.value} ${getSName.value}`;
   newEmpID.textContent = getEmpID.value;
   newActionBtn.textContent = "*";
@@ -55,35 +88,43 @@ regForm.addEventListener("submit", function (e) {
   getFName.value = "";
   getMName.value = "";
   getSName.value = "";
-  getEmpID.value = "";
-  getPosition.value = "";
+  jPosition.value = "";
   getEmail.value = "";
-  // getDOB.value = "";
   getGender.value = "";
   getStatus.value = "";
   getLTeach.value = "";
   getSubject.value = "";
 
-  //   console.log(getLName.value[0]);
-  console.log("working!");
+  /////////////////////////////////////////////////////////////////////////
+
+  eIDNumber.value =
+    String(currentYear).slice(2) +
+    _twoDigitMonth() +
+    _twoDigitDate() +
+    _twoDigitempNum();
+  /////////////////////////////////////////////////////////////////////////
+  // console.log("working!", empNum);
 });
 
 //Month's dates
 
 const inputMonth = document.querySelector(".mmInput");
 const inputDay = document.getElementById("ddInput");
+const inputYear = document.getElementById("yyInput");
+const thirtyOne = ["JAN", "MAR", "MAY", "JUL", "AUG", "OCT", "DEC"];
+const thirty = ["APR", "JUN", "SEP", "NOV"];
+// const yearToday = date
 
 //We use "Change" for Select Tag event listener
 //Change number of dates in a certain Months
 inputMonth.addEventListener("change", function () {
-  const thirtyOne = ["JAN", "MAR", "MAY", "JUL", "AUG", "OCT", "DEC"];
-  const thirty = ["APR", "JUN", "SEP", "NOV"];
+  //removing Previous days in order to prevent more dates
   const removePrevDays = function () {
     for (let xDays = 31; xDays >= 0; xDays--) {
       inputDay.innerHTML -= `<option>${xDays}</option>`;
     }
   };
-
+  //Adding number dates on selected Month
   if (inputMonth.value === "FEB") {
     removePrevDays();
     for (let febDay = 1; febDay <= 29; febDay++) {
@@ -112,8 +153,29 @@ inputMonth.addEventListener("change", function () {
   }
 });
 
+//Year
+for (let yearBorn = currentYear - 100; yearBorn <= currentYear; yearBorn++) {
+  inputYear.innerHTML += `<option>${yearBorn}</option>`;
+}
+
 //Job position
-// const
+const jPosition = document.getElementById("jPosition");
+const getTeachLevel = document.getElementById("lTeach");
+const getSubject = document.getElementById("posSubject");
+
+jPosition.addEventListener("change", function () {
+  if (jPosition.value != "Teacher") {
+    getTeachLevel.value = "Not Applicable";
+    getSubject.value = "Not Applicable";
+    getTeachLevel.disabled = true;
+    getSubject.disabled = true;
+    console.log("Not Teacher");
+  } else {
+    getTeachLevel.disabled = false;
+    getSubject.disabled = false;
+    console.log("This is a taecher");
+  }
+});
 
 //Object;
 const regEmployees = {
