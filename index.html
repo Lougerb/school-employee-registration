@@ -36,8 +36,8 @@
             name="nAME"
           />
           <select class="inputBox sName" id="sName" name="nAME">
-            <option disabled selected>Suffix</option>
-            <option value="">None</option>
+            <option value=" " disabled selected>Suffix</option>
+            <option value=" ">None</option>
             <option>Jr.</option>
             <option>Sr.</option>
           </select>
@@ -46,14 +46,7 @@
         <!-- DOB/GENDER/STATUS -->
 
         <div class="inputSeparator">
-          <!-- <input
-            type="date"
-            placeholder="MM/DD/YY"
-            class="inputBox bDay"
-            id="bDay"
-          /> -->
-
-          <fieldset id="dobFS">
+          <fieldset class="formFieldSet">
             <legend>DOB</legend>
             <select class="dobS mmInput" id="mmInput">
               Month
@@ -144,19 +137,25 @@
         </div>
         <!-- Email and ID Number -->
         <div class="inputSeparator">
-          <input
-            type="email"
-            placeholder="Email"
-            class="inputBox eMail"
-            id="eMail"
-          />
-          <!--  -->
-          <input
-            type="text"
-            placeholder="ID Number"
-            class="inputBox nameInput"
-            id="eIDNumber"
-          />
+          <fieldset class="formFieldSet">
+            <legend>Email</legend>
+            <input
+              type="email"
+              placeholder="Email"
+              class="inputBox eMail"
+              id="eMail"
+            />
+          </fieldset>
+          <fieldset class="formFieldSet">
+            <legend>Employee ID</legend>
+            <input
+              type="text"
+              placeholder="ID Number"
+              class="inputBox"
+              id="eIDNumber"
+              readonly
+            />
+          </fieldset>
         </div>
         <!-- BUTTON -->
         <div class="inputSeparator">

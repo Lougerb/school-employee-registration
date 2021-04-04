@@ -42,7 +42,6 @@ regSubBtn.addEventListener("click", function () {
 });
 
 /////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////
 
 //addEventListener must listen to the Form INSTEAD of the Submit Button of the form
 const regForm = document.getElementById("regForm");
@@ -54,14 +53,15 @@ regForm.addEventListener("submit", function (e) {
   const getMName = document.querySelector("#mName");
   const getSName = document.querySelector("#sName");
   const getEmpID = document.querySelector("#eIDNumber");
-  // const getPosition = document.querySelector("#jPosition");
+  const getDobMM = document.getElementById("mmInput");
+  const getDobDD = document.getElementById("ddInput");
+  const getDobYY = document.getElementById("yyInput");
+  const getGender = document.getElementById("sGender");
 
-  const getEmail = document.querySelector("#eMail");
-  // const getDOB = document.querySelector("#bDay");
-  const getGender = document.querySelector("#sGender");
-  const getStatus = document.querySelector("#sStatus");
-  const getLTeach = document.querySelector("#lTeach");
-  // const getSubject = document.querySelector("#posSubject");
+  const getEmail = document.getElementById("eMail");
+  const getStatus = document.getElementById("sStatus");
+  const getLTeach = document.getElementById("lTeach");
+  const getSubject = document.getElementById("posSubject");
 
   const parentTable = document.querySelector("#empInfo");
   const newEmpRow = document.createElement("tr");
@@ -69,6 +69,7 @@ regForm.addEventListener("submit", function (e) {
   const newPosition = document.createElement("th");
   const newFullName = document.createElement("th");
   const newActionBtn = document.createElement("th"); //Must be Button
+  const newEditBtn = document.createElement("button");
 
   parentTable.appendChild(newEmpRow);
   newEmpRow.appendChild(newEmpID);
@@ -81,8 +82,35 @@ regForm.addEventListener("submit", function (e) {
   newPosition.textContent = jPosition.value;
   newFullName.textContent = `${getFName.value} ${getMName.value[0]}. ${getLName.value} ${getSName.value}`;
   newEmpID.textContent = getEmpID.value;
-  newActionBtn.textContent = "*";
+  newActionBtn.appendChild(newEditBtn);
 
+  newEditBtn.classList.add("editBtn");
+  newEditBtn.textContent = "Edit";
+  /////////////////////////////////////////////////////////////////////////
+  //Sending data to Object
+
+  //Formula
+  //employeeID[`newEmpID.textContent`]={Name: {_fName:,_mName: ,_lName: ,_sName: ,},DOB:{Month:,Day:,Year:,},Gender:,Status: ,Position:,Assigned_Level: ,Subject: ,Email:,}
+  employeeID[newEmpID.textContent] = {
+    Name: {
+      _fName: `${getFName.value}`,
+      _mName: `${getMName.value}`,
+      _lName: `${getLName.value}`,
+      _sName: `${getSName.value}`,
+    },
+    DOB: {
+      Month: `${getDobMM.value}`,
+      Day: `${getDobDD.value}`,
+      Year: `${getDobYY.value}`,
+    },
+    Gender: `${getGender.value}`,
+    Status: `${getStatus.value}`,
+    Position: `${jPosition.value}`,
+    Assigned_Level: `${getLTeach.value}`,
+    Subject: `${getSubject.value}`,
+    Email: `${getEmail.value}`,
+  };
+  /////////////////////////////////////////////////////////////////////////
   //clearing after submitting
   getLName.value = "";
   getFName.value = "";
@@ -96,14 +124,17 @@ regForm.addEventListener("submit", function (e) {
   getSubject.value = "";
 
   /////////////////////////////////////////////////////////////////////////
-
   eIDNumber.value =
     String(currentYear).slice(2) +
     _twoDigitMonth() +
     _twoDigitDate() +
     _twoDigitempNum();
   /////////////////////////////////////////////////////////////////////////
-  // console.log("working!", empNum);
+
+  //EDIT BUTTON
+  newEditBtn.addEventListener("click", function () {
+    console.log(`working edit`);
+  });
 });
 
 //Month's dates
@@ -177,8 +208,10 @@ jPosition.addEventListener("change", function () {
   }
 });
 
-//Object;
-const regEmployees = {
+//Object
+//Storing Data
+
+const schoolEmployees = {
   employeeID: {
     202100101: {
       Name: {
@@ -189,8 +222,28 @@ const regEmployees = {
       },
       DOB: `03 / 03 / 1997`,
       Gender: "Male",
-      Email: "lgbaling@company.com",
+      Status: "Single",
       Position: "Front End Developer",
+      Assigned_Level: "Not Applicable",
+      Subject: "Not Applicable",
+      Email: "lgbaling@company.com",
+    },
+    202100102: {
+      Name: {
+        _fName: "Louein Gerald",
+        _mName: "Sabalza",
+        _lName: "Baling",
+        _sName: "",
+      },
+      DOB: `03 / 03 / 1997`,
+      Gender: "Male",
+      Status: "Single",
+      Position: "Front End Developer",
+      Assigned_Level: "Not Applicable",
+      Subject: "Not Applicable",
+      Email: "lgbaling@company.com",
     },
   },
 };
+
+const { employeeID } = schoolEmployees;

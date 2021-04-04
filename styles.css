@@ -50,6 +50,7 @@ display: flex;
   display: flex;
   justify-content: space-between;
   width: 100%;
+  /* align-items: flex-end; */
 }
 .inputSeparator > .sName {
   width: 100px;
@@ -58,11 +59,11 @@ legend {
   font-size: 12px;
   color: rgb(124, 124, 124);
 }
-#dobFS {
+.formFieldSet {
   display: flex;
   padding: 0;
   border: 0;
-  /* width: 60%; */
+  width: 50%;
   justify-content: space-around;
   margin: 5px;
   gap: 5px;
@@ -132,9 +133,6 @@ legend {
 #empTable tbody > tr:nth-child(even) {
   background: white;
 }
-/* #empTable tbody > tr {
-  width: 20px;
-} */
 .dataRow > th {
   /* box-sizing: border-box; */
   font-weight: lighter;
@@ -144,4 +142,10 @@ legend {
 
 #tLabel {
   background-color: rgb(0, 183, 255);
+}
+#eMail {
+  margin: 0px;
+}
+#eIDNumber {
+  margin: 0px;
 }
