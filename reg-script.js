@@ -76,11 +76,28 @@ regForm.addEventListener("submit", function (e) {
   newEmpRow.appendChild(newFullName);
   newEmpRow.appendChild(newPosition);
   newEmpRow.appendChild(newActionBtn);
-
   newEmpRow.classList.add("dataRow");
 
+  //Make name capitalize
+
+  const capMyName = function (getName) {
+    const splitMyName = getName.split(" ");
+    const storeArrName = [];
+
+    for (let letsCap of splitMyName) {
+      storeArrName.push(
+        letsCap[0].toUpperCase() + letsCap.slice(1).toLowerCase()
+      );
+    }
+    return storeArrName.join(" ");
+  };
+  const fName = capMyName(getFName.value);
+  const mName = capMyName(getMName.value);
+  const lName = capMyName(getLName.value);
+  const sName = getSName.value;
+
   newPosition.textContent = jPosition.value;
-  newFullName.textContent = `${getFName.value} ${getMName.value[0]}. ${getLName.value} ${getSName.value}`;
+  newFullName.textContent = `${fName} ${mName}. ${lName} ${sName}`;
   newEmpID.textContent = getEmpID.value;
   newActionBtn.appendChild(newEditBtn);
 
@@ -93,10 +110,10 @@ regForm.addEventListener("submit", function (e) {
   //employeeID[`newEmpID.textContent`]={Name: {_fName:,_mName: ,_lName: ,_sName: ,},DOB:{Month:,Day:,Year:,},Gender:,Status: ,Position:,Assigned_Level: ,Subject: ,Email:,}
   employeeID[newEmpID.textContent] = {
     Name: {
-      _fName: `${getFName.value}`,
-      _mName: `${getMName.value}`,
-      _lName: `${getLName.value}`,
-      _sName: `${getSName.value}`,
+      _fName: `${fName}`,
+      _mName: `${mName}`,
+      _lName: `${lName}`,
+      _sName: `${sName}`,
     },
     DOB: {
       Month: `${getDobMM.value}`,
@@ -133,7 +150,7 @@ regForm.addEventListener("submit", function (e) {
 
   //EDIT BUTTON
   newEditBtn.addEventListener("click", function () {
-    console.log(`working edit`);
+    console.log(`working edit`, employeeID[newEmpID.textContent]);
   });
 });
 
@@ -212,38 +229,7 @@ jPosition.addEventListener("change", function () {
 //Storing Data
 
 const schoolEmployees = {
-  employeeID: {
-    202100101: {
-      Name: {
-        _fName: "Louein Gerald",
-        _mName: "Sabalza",
-        _lName: "Baling",
-        _sName: "",
-      },
-      DOB: `03 / 03 / 1997`,
-      Gender: "Male",
-      Status: "Single",
-      Position: "Front End Developer",
-      Assigned_Level: "Not Applicable",
-      Subject: "Not Applicable",
-      Email: "lgbaling@company.com",
-    },
-    202100102: {
-      Name: {
-        _fName: "Louein Gerald",
-        _mName: "Sabalza",
-        _lName: "Baling",
-        _sName: "",
-      },
-      DOB: `03 / 03 / 1997`,
-      Gender: "Male",
-      Status: "Single",
-      Position: "Front End Developer",
-      Assigned_Level: "Not Applicable",
-      Subject: "Not Applicable",
-      Email: "lgbaling@company.com",
-    },
-  },
+  employeeID: {},
 };
 
 const { employeeID } = schoolEmployees;
