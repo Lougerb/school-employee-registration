@@ -94,7 +94,7 @@ regForm.addEventListener("submit", function (e) {
   const fName = capMyName(getFName.value);
   const mName = capMyName(getMName.value);
   const lName = capMyName(getLName.value);
-  const sName = getSName.value;
+  const sName = getSName.value; //does not need capitalization due to Selection is given
 
   newPosition.textContent = jPosition.value;
   newFullName.textContent = `${fName} ${mName}. ${lName} ${sName}`;

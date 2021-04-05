@@ -8,7 +8,164 @@
     <title>Employee Registration</title>
   </head>
   <body>
+    <!-- Edit Dialouge -->
+    <div id="editDialouge">
+      <div id="editOverlay">
+        <form id="editForm">
+          <div class="inputSeparator nameSeparator">
+            <input
+              type="text"
+              placeholder="Last Name"
+              class="inputBox nameInput"
+              id="lName"
+              name="nAME"
+              required
+            />,
+            <input
+              type="text"
+              placeholder="First Name"
+              class="inputBox nameInput"
+              id="fName"
+              name="nAME"
+            />
+            <input
+              type="text"
+              placeholder="Middle Name"
+              class="inputBox nameInput"
+              id="mName"
+              name="nAME"
+            />
+            <select class="inputBox sName" id="sName" name="nAME">
+              <option value=" " disabled selected>Suffix</option>
+              <option value=" ">None</option>
+              <option>Jr.</option>
+              <option>Sr.</option>
+            </select>
+          </div>
+
+          <!-- DOB/GENDER/STATUS -->
+
+          <div class="inputSeparator">
+            <fieldset class="formFieldSet">
+              <legend>DOB</legend>
+              <select class="dobS mmInput" id="mmInput">
+                Month
+                <option value="" disabled selected>MM</option>
+                <option>JAN</option>
+                <option>FEB</option>
+                <option>MAR</option>
+                <option>APR</option>
+                <option>MAY</option>
+                <option>JUN</option>
+                <option>JUL</option>
+                <option>AUG</option>
+                <option>SEP</option>
+                <option>OCT</option>
+                <option>NOV</option>
+                <option>DEC</option>
+              </select>
+              <select class="dobS ddInput" id="ddInput">
+                <option value="" disabled selected>DD</option>
+              </select>
+              <select class="dobS yyInput" id="yyInput">
+                <option value="" disabled selected>YYYY</option>
+              </select>
+            </fieldset>
+            <select class="inputBox sGender" id="sGender">
+              Gender
+              <option value="" disabled selected>Gender</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Others</option>
+            </select>
+            <select class="inputBox sStatus" id="sStatus">
+              Status
+              <option value="" disabled selected>Status</option>
+              <option>Married</option>
+              <option>Single</option>
+            </select>
+          </div>
+
+          <!-- JOB DESC -->
+
+          <div class="inputSeparator">
+            <select class="inputBox jPosition" id="jPosition">
+              <option value="" disabled selected>Position</option>
+              <option class="posTeacher">Teacher</option>
+              <option class="posNotTeacher">Councelor</option>
+              <option class="posNotTeacher">Security</option>
+              <option class="posNotTeacher">Maintenance</option>
+              <option class="posNotTeacher">IT</option>
+              <option class="posNotTeacher">Accounting</option>
+              <option class="posNotTeacher">Finance</option>
+              <option class="posNotTeacher">Human Resource Management</option>
+              <option class="posNotTeacher">School Nurse</option>
+              <option class="posNotTeacher">School Dentist</option>
+              <option class="posNotTeacher">Librarian</option>
+              <option class="posNotTeacher">Food Service Specialist</option>
+            </select>
+            <select class="inputBox lTeach" id="lTeach">
+              <option value="" disabled selected>Assigned Level</option>
+              <option>Not Applicable</option>
+              <option>Grade 1</option>
+              <option>Grade 2</option>
+              <option>Grade 3</option>
+              <option>Grade 4</option>
+              <option>Grade 5</option>
+              <option>Grade 6</option>
+              <option>Grade 7</option>
+              <option>Grade 8</option>
+              <option>Grade 9</option>
+              <option>Grade 10</option>
+              <option>Grade 11</option>
+              <option>Grade 12</option>
+            </select>
+            <select class="inputBox posSubject" id="posSubject">
+              <option value="" disabled selected>Subject</option>
+              <option>Not Applicable</option>
+              <option class="posNotTeacher">Math</option>
+              <option class="posNotTeacher">Science</option>
+              <option class="posNotTeacher">Language</option>
+              <option class="posNotTeacher">TLE</option>
+              <option class="posNotTeacher">Filipino</option>
+              <option class="posNotTeacher">Music</option>
+              <option class="posNotTeacher">Arts</option>
+              <option class="posNotTeacher">Physical Education</option>
+              <option class="posNotTeacher">Health</option>
+              <option class="posNotTeacher">Computer</option>
+            </select>
+          </div>
+          <!-- Email and ID Number -->
+          <div class="inputSeparator">
+            <fieldset class="formFieldSet">
+              <legend>Email</legend>
+              <input type="email" placeholder="example@company.com""
+              class="inputBox eMail" id="eMail" />
+            </fieldset>
+            <fieldset class="formFieldSet">
+              <legend>Employee ID</legend>
+              <input
+                type="text"
+                placeholder="ID Number"
+                class="inputBox"
+                id="eIDNumber"
+                readonly
+              />
+            </fieldset>
+          </div>
+          <!-- BUTTON -->
+          <div class="inputSeparator">
+            <button type="button" class="clearButton formBtn">Clear</button>
+            <button type="submit" class="subButton formBtn" id="submitButton">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <header><h1>Employee Registration</h1></header>
+
     <div id="container">
       <form id="regForm">
         <!-- NAME -->
@@ -141,7 +298,7 @@
             <legend>Email</legend>
             <input
               type="email"
-              placeholder="Email"
+              placeholder="example@company.com"
               class="inputBox eMail"
               id="eMail"
             />
@@ -166,6 +323,7 @@
         </div>
       </form>
     </div>
+
     <!-- ------------------------------------------------------------- -->
     <div id="eListContainer">
       <table id="empTable">
