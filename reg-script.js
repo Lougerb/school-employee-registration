@@ -160,6 +160,7 @@ regForm.addEventListener("submit", function (e) {
     const divForNames = document.createElement("div");
     const divForInfo = document.createElement("div");
     const divForJPosition = document.createElement("div");
+    const divforEmailEID = document.createElement("div");
     const divForBtns = document.createElement("div");
 
     editOverlay.classList.remove("hideme");
@@ -257,6 +258,9 @@ regForm.addEventListener("submit", function (e) {
     <option>Single</option>`;
 
     //Assign ID and Classes
+    editMMInput.id = "editMMInput";
+    editDDInput.id = "editDDInput";
+    editYYInput.id = "editYYInput";
     divForInfo.classList.add("inputSeparator", "nameSeparator");
     fsForDOB.classList.add("formFieldSet");
     editMMInput.classList.add("dobS", "mmInput");
@@ -264,8 +268,78 @@ regForm.addEventListener("submit", function (e) {
     editYYInput.classList.add("dobS", "yyInput");
     editSGender.classList.add("inputBox", "sGender");
     editSStatus.classList.add("inputBox", "sStatus");
+    //Functions for Dates
+    editMMInput.addEventListener("change", function () {
+      assignDay(editMMInput, editDDInput);
+    });
+    yearInput(editYYInput);
 
-    inputMonth.addEventListener("change", assignDay);
+    //JOB POSITION
+    editForm.appendChild(divForJPosition);
+    divForJPosition.appendChild(editJPosition);
+    divForJPosition.appendChild(editLTeach);
+    divForJPosition.appendChild(editPosSubject);
+    //Options
+    editJPosition.innerHTML = `<option value="" disabled selected>Position</option>
+    <option>Teacher</option>
+    <option>Councelor</option>
+    <option>Security</option>
+    <option>Maintenance</option>
+    <option>IT</option>
+    <option>Accounting</option>
+    <option>Finance</option>
+    <option>Human Resource Management</option>
+    <option>School Nurse</option>
+    <option>School Dentist</option>
+    <option>Librarian</option>
+    <option>Food Service Specialist</option>`;
+    editLTeach.innerHTML = `<option value="" disabled selected>Assigned Level</option>
+    <option>Not Applicable</option>
+    <option>Grade 1</option>
+    <option>Grade 2</option>
+    <option>Grade 3</option>
+    <option>Grade 4</option>
+    <option>Grade 5</option>
+    <option>Grade 6</option>
+    <option>Grade 7</option>
+    <option>Grade 8</option>
+    <option>Grade 9</option>
+    <option>Grade 10</option>
+    <option>Grade 11</option>
+    <option>Grade 12</option>`;
+    editPosSubject.innerHTML = `<option value="" disabled selected>Subject</option>
+    <option>Not Applicable</option>
+    <option>Math</option>
+    <option>Science</option>
+    <option>Language</option>
+    <option>TLE</option>
+    <option>Filipino</option>
+    <option>Music</option>
+    <option>Arts</option>
+    <option>Physical Education</option>
+    <option>Health</option>
+    <option>Computer</option>`;
+
+    //Assign ID and Classes
+    editJPosition.id = "editJPosition";
+    editLTeach.id = "editLTeach";
+    editPosSubject.id = "editPosSubject";
+
+    divForJPosition.classList.add("inputSeparator", "nameSeparator");
+    editJPosition.classList.add("inputBox", "jPosition");
+    editLTeach.classList.add("inputBox", "lTeach");
+    editPosSubject.classList.add("inputBox", "posSubject");
+
+    //Email and EID
+    editForm.appendChild(divforEmailEID);
+    divforEmailEID.appendChild(fsForEmail);
+    divforEmailEID.appendChild(fsForEID);
+    fsForEmail.appendChild(editEmail);
+    fsForEID.appendChild(copyeIDNumber);
+    fsForEmail.innerHTML = "<legend>Email</legend>";
+    fsForEID.innerHTML = "<legend>Employee ID</legend>";
+
+    //Assign ID and CLasses
 
     console.log(`working edit`, employeeID[newEmpID.textContent]);
 
@@ -277,9 +351,9 @@ regForm.addEventListener("submit", function (e) {
 //Month's dates
 
 //
-const inputMonth = document.querySelector(".mmInput");
-const inputDay = document.querySelector(".ddInput");
-const inputYear = document.querySelector(".yyInput");
+const inputMonth = document.getElementById("mmInput");
+const inputDay = document.getElementById("ddInput");
+const inputYear = document.getElementById("yyInput");
 const thirtyOne = ["JAN", "MAR", "MAY", "JUL", "AUG", "OCT", "DEC"];
 const thirty = ["APR", "JUN", "SEP", "NOV"];
 
@@ -289,49 +363,55 @@ const thirty = ["APR", "JUN", "SEP", "NOV"];
 //one is for registration
 //and one is for the editor
 //Change number of dates in a certain Months
-const assignDay = function () {
+const assignDay = function (mm, dd) {
   //removing Previous days in order to prevent more dates
   const removePrevDays = function () {
     for (let xDays = 31; xDays >= 0; xDays--) {
-      inputDay.innerHTML -= `<option>${xDays}</option>`;
+      dd.innerHTML -= `<option>${xDays}</option>`;
     }
   };
   //Adding number dates on selected Month
-  if (inputMonth.value === "FEB") {
+  if (mm.value === "FEB") {
     removePrevDays();
     for (let febDay = 1; febDay <= 29; febDay++) {
       document.getElementsByTagName("option");
-      inputDay.innerHTML += `<option>${febDay}</option>`;
+      dd.innerHTML += `<option>${febDay}</option>`;
     }
   }
 
   for (let monthsWith31 = 0; monthsWith31 <= thirtyOne.length; monthsWith31++) {
-    if (inputMonth.value === thirtyOne[monthsWith31]) {
+    if (mm.value === thirtyOne[monthsWith31]) {
       removePrevDays();
 
       for (let m31 = 1; m31 <= 31; m31++) {
-        inputDay.innerHTML += `<option>${m31}</option>`;
+        dd.innerHTML += `<option>${m31}</option>`;
       }
     }
   }
 
   for (let monthsWith30 = 0; monthsWith30 <= thirty.length; monthsWith30++) {
-    if (inputMonth.value === thirty[monthsWith30]) {
+    if (mm.value === thirty[monthsWith30]) {
       removePrevDays();
       for (let m30 = 1; m30 <= 30; m30++) {
-        inputDay.innerHTML += `<option>${m30}</option>`;
+        dd.innerHTML += `<option>${m30}</option>`;
       }
     }
   }
 };
 
 //We use "Change" for Select Tag event listener
-inputMonth.addEventListener("change", assignDay);
+inputMonth.addEventListener("change", function () {
+  assignDay(inputMonth, inputDay);
+});
 
 //Year
-for (let yearBorn = currentYear - 80; yearBorn <= currentYear; yearBorn++) {
-  inputYear.innerHTML += `<option>${yearBorn}</option>`;
-}
+const yearInput = function (yy) {
+  for (let yearBorn = currentYear - 80; yearBorn <= currentYear; yearBorn++) {
+    yy.innerHTML += `<option>${yearBorn}</option>`;
+  }
+};
+
+yearInput(inputYear);
 
 //Job position
 const jPosition = document.getElementById("jPosition");
