@@ -48,11 +48,11 @@ const regForm = document.getElementById("regForm");
 //Submit Button
 regForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  const getLName = document.querySelector("#lName");
-  const getFName = document.querySelector("#fName");
-  const getMName = document.querySelector("#mName");
-  const getSName = document.querySelector("#sName");
-  const getEmpID = document.querySelector("#eIDNumber");
+  const getLName = document.getElementById("lName");
+  const getFName = document.getElementById("fName");
+  const getMName = document.getElementById("mName");
+  const getSName = document.getElementById("sName");
+  const getEmpID = document.getElementById("eIDNumber");
   const getDobMM = document.getElementById("mmInput");
   const getDobDD = document.getElementById("ddInput");
   const getDobYY = document.getElementById("yyInput");
@@ -150,22 +150,146 @@ regForm.addEventListener("submit", function (e) {
 
   //EDIT BUTTON
   newEditBtn.addEventListener("click", function () {
+    //parents
+    const editor = document.getElementById("editDialouge");
+    const editOverlay = document.getElementById("editOverlay");
+    const editForm = document.getElementById("editForm");
+    const fsForDOB = document.createElement("fieldset");
+    const fsForEmail = document.createElement("fieldset");
+    const fsForEID = document.createElement("fieldset");
+    const divForNames = document.createElement("div");
+    const divForInfo = document.createElement("div");
+    const divForJPosition = document.createElement("div");
+    const divForBtns = document.createElement("div");
+
+    editOverlay.classList.remove("hideme");
+
+    //inputs
+
+    //Name
+    const editLName = document.createElement("input");
+    const editFName = document.createElement("input");
+    const editMName = document.createElement("input");
+    const editSName = document.createElement("select");
+    const comma = document.createElement("span");
+
+    //DOB
+    const editMMInput = document.createElement("select");
+    const editDDInput = document.createElement("select");
+    const editYYInput = document.createElement("select");
+    //Gender
+    const editSGender = document.createElement("select");
+    //Status
+    const editSStatus = document.createElement("select");
+
+    //Job Position
+    const editJPosition = document.createElement("select");
+    const editLTeach = document.createElement("select");
+    const editPosSubject = document.createElement("select");
+
+    //Email and EID
+    const editEmail = document.createElement("input");
+    const copyeIDNumber = document.createElement("input");
+    //Buttons
+    const cancelBtn = document.createElement("button");
+    const saveBtn = document.createElement("button");
+
+    //Names
+    editForm.appendChild(divForNames);
+    divForNames.appendChild(editLName);
+    divForNames.appendChild(comma);
+    comma.textContent = ",";
+    divForNames.appendChild(editFName);
+    divForNames.appendChild(editMName);
+    divForNames.appendChild(editSName);
+    editSName.innerHTML = `<option value=" " disabled selected>Suffix</option>
+    <option value=" ">None</option>
+    <option>Jr.</option>
+    <option>Sr.</option>`;
+
+    //Assigning Class and ID
+    divForNames.classList.add("inputSeparator", "nameSeparator");
+    editLName.id = "editLName";
+    editFName.id = "editFName";
+    editMName.id = "editMName";
+    editSName.id = "editSName";
+    editLName.classList.add("inputBox", "nameInput");
+    editFName.classList.add("inputBox", "nameInput");
+    editMName.classList.add("inputBox", "nameInput");
+    editSName.classList.add("inputBox", "nameInput", "sName");
+    editLName.setAttribute("placeholder", "Last Name");
+    editFName.setAttribute("placeholder", "First Name");
+    editMName.setAttribute("placeholder", "Middle Name");
+
+    //Info
+    editForm.appendChild(divForInfo);
+    divForInfo.appendChild(fsForDOB);
+    fsForDOB.innerHTML = "<legend>DOB</legend>";
+    fsForDOB.appendChild(editMMInput);
+    editMMInput.innerHTML = `<option value="" disabled selected>MM</option>
+    <option>JAN</option>
+    <option>FEB</option>
+    <option>MAR</option>
+    <option>APR</option>
+    <option>MAY</option>
+    <option>JUN</option>
+    <option>JUL</option>
+    <option>AUG</option>
+    <option>SEP</option>
+    <option>OCT</option>
+    <option>NOV</option>
+    <option>DEC</option>`;
+    fsForDOB.appendChild(editDDInput);
+    editDDInput.innerHTML = `
+    <option value="" disabled selected>DD</option>`;
+    fsForDOB.appendChild(editYYInput);
+    editYYInput.innerHTML = `
+    <option value="" disabled selected>YYYY</option>`;
+
+    divForInfo.appendChild(editSGender);
+    editSGender.innerHTML = `<option value="" disabled selected>Gender</option>
+    <option>Male</option>
+    <option>Female</option>
+    <option>Others</option>`;
+    divForInfo.appendChild(editSStatus);
+    editSStatus.innerHTML = `<option value="" disabled selected>Status</option>
+    <option>Married</option>
+    <option>Single</option>`;
+
+    //Assign ID and Classes
+    divForInfo.classList.add("inputSeparator", "nameSeparator");
+    fsForDOB.classList.add("formFieldSet");
+    editMMInput.classList.add("dobS", "mmInput");
+    editDDInput.classList.add("dobS", "ddInput");
+    editYYInput.classList.add("dobS", "yyInput");
+    editSGender.classList.add("inputBox", "sGender");
+    editSStatus.classList.add("inputBox", "sStatus");
+
+    inputMonth.addEventListener("change", assignDay);
+
     console.log(`working edit`, employeeID[newEmpID.textContent]);
+
+    //Generate Editor
+    // const
   });
 });
 
 //Month's dates
 
+//
 const inputMonth = document.querySelector(".mmInput");
-const inputDay = document.getElementById("ddInput");
-const inputYear = document.getElementById("yyInput");
+const inputDay = document.querySelector(".ddInput");
+const inputYear = document.querySelector(".yyInput");
 const thirtyOne = ["JAN", "MAR", "MAY", "JUL", "AUG", "OCT", "DEC"];
 const thirty = ["APR", "JUN", "SEP", "NOV"];
-// const yearToday = date
 
-//We use "Change" for Select Tag event listener
+//We use loop to call all the element with the same class name
+//for example, Month/day/year
+//they have 2 elements each input
+//one is for registration
+//and one is for the editor
 //Change number of dates in a certain Months
-inputMonth.addEventListener("change", function () {
+const assignDay = function () {
   //removing Previous days in order to prevent more dates
   const removePrevDays = function () {
     for (let xDays = 31; xDays >= 0; xDays--) {
@@ -199,10 +323,13 @@ inputMonth.addEventListener("change", function () {
       }
     }
   }
-});
+};
+
+//We use "Change" for Select Tag event listener
+inputMonth.addEventListener("change", assignDay);
 
 //Year
-for (let yearBorn = currentYear - 100; yearBorn <= currentYear; yearBorn++) {
+for (let yearBorn = currentYear - 80; yearBorn <= currentYear; yearBorn++) {
   inputYear.innerHTML += `<option>${yearBorn}</option>`;
 }
 
