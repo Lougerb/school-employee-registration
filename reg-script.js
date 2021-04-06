@@ -334,12 +334,41 @@ regForm.addEventListener("submit", function (e) {
     editForm.appendChild(divforEmailEID);
     divforEmailEID.appendChild(fsForEmail);
     divforEmailEID.appendChild(fsForEID);
-    fsForEmail.appendChild(editEmail);
-    fsForEID.appendChild(copyeIDNumber);
     fsForEmail.innerHTML = "<legend>Email</legend>";
     fsForEID.innerHTML = "<legend>Employee ID</legend>";
+    fsForEmail.appendChild(editEmail);
+    fsForEID.appendChild(copyeIDNumber);
+
+    editEmail.setAttribute("type", "email");
+    copyeIDNumber.setAttribute("type", "text");
 
     //Assign ID and CLasses
+    divforEmailEID.classList.add("inputSeparator");
+    fsForEmail.classList.add("formFieldSet");
+    fsForEID.classList.add("formFieldSet");
+    editEmail.classList.add("inputBox", "email_N_empID");
+    copyeIDNumber.classList.add("inputBox", "email_N_empID");
+    editEmail.id = "editEmail";
+    copyeIDNumber.id = "copyeIDNumber";
+    //Set attribute
+    editEmail.setAttribute("type", "email");
+    editEmail.setAttribute("placeholder", "example@company.com");
+    copyeIDNumber.setAttribute("type", "text");
+    copyeIDNumber.setAttribute("placeholder", "00000000");
+
+    // Buttons
+    editForm.appendChild(divForBtns);
+    divForBtns.appendChild(cancelBtn);
+    divForBtns.appendChild(saveBtn);
+    cancelBtn.setAttribute("type", "button");
+    saveBtn.setAttribute("type", "button");
+    cancelBtn.textContent = "Cancel";
+    saveBtn.textContent = "Submit";
+    divForBtns.classList.add("inputSeparator");
+    cancelBtn.classList.add("formBtn", "cButton");
+    saveBtn.classList.add("formBtn", "subButton");
+    cancelBtn.id = "cancelBtn";
+    saveBtn.id = "saveBtn";
 
     console.log(`working edit`, employeeID[newEmpID.textContent]);
 
