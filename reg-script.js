@@ -9,6 +9,72 @@ const currentYear = currentWholeDate.getFullYear();
 // let batchNum = 0;
 let empNum = 1;
 
+//Month's dates
+
+const inputMonth = document.getElementById("mmInput");
+const inputDay = document.getElementById("ddInput");
+const inputYear = document.getElementById("yyInput");
+const thirtyOne = ["JAN", "MAR", "MAY", "JUL", "AUG", "OCT", "DEC"];
+const thirty = ["APR", "JUN", "SEP", "NOV"];
+
+//We use loop to call all the element with the same class name
+//for example, Month/day/year
+//they have 2 elements each input
+//one is for registration
+//and one is for the editor
+//Change number of dates in a certain Months
+
+//removing Previous days in order to prevent more dates
+const removePrevDays = function (rd) {
+  // rd.innerHTML = `<option>DD</option>`;
+  for (let xDays = 31; xDays >= 0; xDays--) {
+    rd.innerHTML -= `<option>${xDays}</option>`;
+  }
+};
+const assignDay = function (mm, dd) {
+  //Adding number dates on selected Month
+  if (mm.value === "FEB") {
+    removePrevDays(dd);
+    for (let febDay = 1; febDay <= 29; febDay++) {
+      document.getElementsByTagName("option");
+      dd.innerHTML += `<option>${febDay}</option>`;
+    }
+  }
+
+  for (let monthsWith31 = 0; monthsWith31 <= thirtyOne.length; monthsWith31++) {
+    if (mm.value === thirtyOne[monthsWith31]) {
+      removePrevDays(dd);
+
+      for (let m31 = 1; m31 <= 31; m31++) {
+        dd.innerHTML += `<option>${m31}</option>`;
+      }
+    }
+  }
+
+  for (let monthsWith30 = 0; monthsWith30 <= thirty.length; monthsWith30++) {
+    if (mm.value === thirty[monthsWith30]) {
+      removePrevDays(dd);
+      for (let m30 = 1; m30 <= 30; m30++) {
+        dd.innerHTML += `<option>${m30}</option>`;
+      }
+    }
+  }
+};
+
+//We use "Change" for Select Tag event listener
+inputMonth.addEventListener("change", function () {
+  assignDay(inputMonth, inputDay);
+});
+
+//Year
+const yearInput = function (yy) {
+  for (let yearBorn = currentYear - 80; yearBorn <= currentYear; yearBorn++) {
+    yy.innerHTML += `<option>${yearBorn}</option>`;
+  }
+};
+
+yearInput(inputYear);
+
 //Make name capitalize
 const capMyName = function (getName) {
   const storeArrName = [];
@@ -179,6 +245,7 @@ regForm.addEventListener("submit", function (e) {
     getLTeach.disabled = false;
     getSubject.disabled = false;
 
+    // assignDay(getDobMM, getDobDD);
     profileEditor(
       employeeID[newEmpID.textContent]._Name._fName,
       employeeID[newEmpID.textContent]._Name._mName,
@@ -220,72 +287,6 @@ regForm.addEventListener("submit", function (e) {
   getGender.value = "";
   getStatus.value = "";
 });
-
-//Month's dates
-
-const inputMonth = document.getElementById("mmInput");
-const inputDay = document.getElementById("ddInput");
-const inputYear = document.getElementById("yyInput");
-const thirtyOne = ["JAN", "MAR", "MAY", "JUL", "AUG", "OCT", "DEC"];
-const thirty = ["APR", "JUN", "SEP", "NOV"];
-
-//We use loop to call all the element with the same class name
-//for example, Month/day/year
-//they have 2 elements each input
-//one is for registration
-//and one is for the editor
-//Change number of dates in a certain Months
-
-//removing Previous days in order to prevent more dates
-const removePrevDays = function (rd) {
-  // rd.innerHTML = `<option>DD</option>`;
-  for (let xDays = 31; xDays >= 1; xDays--) {
-    rd.innerHTML -= `<option>${xDays}</option>`;
-  }
-};
-const assignDay = function (mm, dd) {
-  //Adding number dates on selected Month
-  if (mm.value === "FEB") {
-    removePrevDays(dd);
-    for (let febDay = 1; febDay <= 29; febDay++) {
-      document.getElementsByTagName("option");
-      dd.innerHTML += `<option>${febDay}</option>`;
-    }
-  }
-
-  for (let monthsWith31 = 0; monthsWith31 <= thirtyOne.length; monthsWith31++) {
-    if (mm.value === thirtyOne[monthsWith31]) {
-      removePrevDays(dd);
-
-      for (let m31 = 1; m31 <= 31; m31++) {
-        dd.innerHTML += `<option>${m31}</option>`;
-      }
-    }
-  }
-
-  for (let monthsWith30 = 0; monthsWith30 <= thirty.length; monthsWith30++) {
-    if (mm.value === thirty[monthsWith30]) {
-      removePrevDays(dd);
-      for (let m30 = 1; m30 <= 30; m30++) {
-        dd.innerHTML += `<option>${m30}</option>`;
-      }
-    }
-  }
-};
-
-//We use "Change" for Select Tag event listener
-inputMonth.addEventListener("change", function () {
-  assignDay(inputMonth, inputDay);
-});
-
-//Year
-const yearInput = function (yy) {
-  for (let yearBorn = currentYear - 80; yearBorn <= currentYear; yearBorn++) {
-    yy.innerHTML += `<option>${yearBorn}</option>`;
-  }
-};
-
-yearInput(inputYear);
 
 //Job position
 // const jPosition = document.getElementById("jPosition");
@@ -454,6 +455,9 @@ const profileEditor = function (
   editSGender.classList.add("inputBox", "sGender");
   editSStatus.classList.add("inputBox", "sStatus");
   //Functions for Dates
+  // window.addEventListener("load", function () {
+  assignDay(editMMInput, editDDInput);
+  // });
   editMMInput.addEventListener("change", function () {
     assignDay(editMMInput, editDDInput);
   });
@@ -564,6 +568,7 @@ const profileEditor = function (
   editMName.value = f_mName;
   editSName.value = f_sName;
   editMMInput.value = f_mm;
+  assignDay(editMMInput, editDDInput);
   editDDInput.value = f_dd;
   editYYInput.value = f_yy;
   editSGender.value = f_Gender;
