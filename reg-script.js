@@ -109,7 +109,7 @@ regForm.addEventListener("submit", function (e) {
   //Formula
   //employeeID[`newEmpID.textContent`]={Name: {_fName:,_mName: ,_lName: ,_sName: ,},DOB:{Month:,Day:,Year:,},Gender:,Status: ,Position:,Assigned_Level: ,Subject: ,Email:,}
   employeeID[newEmpID.textContent] = {
-    Name: {
+    _Name: {
       _fName: `${fName}`,
       _mName: `${mName}`,
       _lName: `${lName}`,
@@ -163,7 +163,9 @@ regForm.addEventListener("submit", function (e) {
     const divforEmailEID = document.createElement("div");
     const divForBtns = document.createElement("div");
 
-    editOverlay.classList.remove("hideme");
+    editor.classList.remove("hideme");
+    // editOverlay.classList.remove("hideme");
+    // editForm.classList.remove("hideme");
 
     //inputs
 
@@ -369,6 +371,35 @@ regForm.addEventListener("submit", function (e) {
     saveBtn.classList.add("formBtn", "subButton");
     cancelBtn.id = "cancelBtn";
     saveBtn.id = "saveBtn";
+
+    //Get Values
+    editFName.value = employeeID[newEmpID.textContent]._Name._fName;
+    editLName.value = employeeID[newEmpID.textContent]._Name._lName;
+    editMName.value = employeeID[newEmpID.textContent]._Name._mName;
+    editSName.value = employeeID[newEmpID.textContent]._Name._sName;
+    editMMInput.value = employeeID[newEmpID.textContent].DOB.Month;
+    editDDInput.value = employeeID[newEmpID.textContent].DOB.Day;
+    editYYInput.value = employeeID[newEmpID.textContent].DOB.Year;
+    editSGender.value = employeeID[newEmpID.textContent].Gender;
+    editSStatus.value = employeeID[newEmpID.textContent].Status;
+    editJPosition.value = employeeID[newEmpID.textContent].Position;
+    editLTeach.value = employeeID[newEmpID.textContent].Assigned_Level;
+    editPosSubject.value = employeeID[newEmpID.textContent].Subject;
+    editEmail.value = employeeID[newEmpID.textContent].Email;
+    copyeIDNumber.value = newEmpID.textContent;
+
+    //Buttons
+
+    //Save button
+    saveBtn.addEventListener("click", function () {
+      //Save and Exit
+      editor.classList.add("hideme");
+    });
+
+    //cancel button
+    cancelBtn.addEventListener("click", function () {
+      editor.classList.add("hideme");
+    });
 
     console.log(`working edit`, employeeID[newEmpID.textContent]);
 

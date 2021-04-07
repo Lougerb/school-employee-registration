@@ -170,3 +170,15 @@ legend {
 .hideme {
   visibility: hidden;
 }
+#editDialouge {
+  position: fixed;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+#editForm {
+  z-index: 2;
+}
