@@ -150,6 +150,24 @@ regForm.addEventListener("submit", function (e) {
 
   //EDIT BUTTON
   newEditBtn.addEventListener("click", function () {
+    profileEditor(
+      employeeID[newEmpID.textContent]._Name._fName,
+      employeeID[newEmpID.textContent]._Name._mName,
+      employeeID[newEmpID.textContent]._Name._lName,
+      employeeID[newEmpID.textContent]._Name._sName,
+      employeeID[newEmpID.textContent].DOB.Month,
+      employeeID[newEmpID.textContent].DOB.Day,
+      employeeID[newEmpID.textContent].DOB.Year,
+      employeeID[newEmpID.textContent].Gender,
+      employeeID[newEmpID.textContent].Status,
+      employeeID[newEmpID.textContent].Position,
+      employeeID[newEmpID.textContent].Assigned_Level,
+      employeeID[newEmpID.textContent].Subject,
+      employeeID[newEmpID.textContent].Email,
+      newEmpID.textContent
+    );
+
+    /** 
     //parents
     const editor = document.getElementById("editDialouge");
     const editOverlay = document.getElementById("editOverlay");
@@ -390,6 +408,10 @@ regForm.addEventListener("submit", function (e) {
 
     //Buttons
 
+    const closeEditor = function () {
+      editForm.remove();
+      editor.classList.add("hideme");
+    };
     //Save button
     saveBtn.addEventListener("click", function () {
       //Save and Exit
@@ -407,19 +429,24 @@ regForm.addEventListener("submit", function (e) {
       employeeID[newEmpID.textContent].Subject = editPosSubject.value;
       employeeID[newEmpID.textContent].Email = editEmail.value;
       newEmpID.textContent = copyeIDNumber.value;
-      editForm.remove();
-      editor.classList.add("hideme");
+      closeEditor();
     });
 
     //cancel button
     cancelBtn.addEventListener("click", function () {
-      editor.classList.add("hideme");
+      closeEditor();
+    });
+
+    //click overlay to exit
+    editOverlay.addEventListener("click", function () {
+      closeEditor();
     });
 
     console.log(`working edit`, employeeID[newEmpID.textContent]);
 
     //Generate Editor
     // const
+  */
   });
 });
 
@@ -491,18 +518,18 @@ yearInput(inputYear);
 //Job position
 const jPosition = document.getElementById("jPosition");
 const getTeachLevel = document.getElementById("lTeach");
-const getSubject = document.getElementById("posSubject");
+const f_getSubject = document.getElementById("posSubject");
 
 jPosition.addEventListener("change", function () {
   if (jPosition.value != "Teacher") {
     getTeachLevel.value = "Not Applicable";
-    getSubject.value = "Not Applicable";
+    f_getSubject.value = "Not Applicable";
     getTeachLevel.disabled = true;
-    getSubject.disabled = true;
+    f_getSubject.disabled = true;
     console.log("Not Teacher");
   } else {
     getTeachLevel.disabled = false;
-    getSubject.disabled = false;
+    f_getSubject.disabled = false;
     console.log("This is a taecher");
   }
 });
@@ -515,3 +542,300 @@ const schoolEmployees = {
 };
 
 const { employeeID } = schoolEmployees;
+
+const profileEditor = function (
+  f_fName,
+  f_mName,
+  f_lName,
+  f_sName,
+  f_mm,
+  f_dd,
+  f_yy,
+  f_Gender,
+  f_Status,
+  f_Position,
+  f_AssignLevel,
+  f_Subject,
+  f_Email,
+  f_EID
+) {
+  //parents
+  const editor = document.getElementById("editDialouge");
+  const editOverlay = document.getElementById("editOverlay");
+  const editForm = document.createElement("form");
+  const fsForDOB = document.createElement("fieldset");
+  const fsForEmail = document.createElement("fieldset");
+  const fsForEID = document.createElement("fieldset");
+  const divForNames = document.createElement("div");
+  const divForInfo = document.createElement("div");
+  const divForJPosition = document.createElement("div");
+  const divforEmailEID = document.createElement("div");
+  const divForBtns = document.createElement("div");
+
+  editor.classList.remove("hideme");
+  editor.appendChild(editForm);
+  editForm.id = "editForm";
+
+  //inputs
+
+  //Name
+  const editLName = document.createElement("input");
+  const editFName = document.createElement("input");
+  const editMName = document.createElement("input");
+  const editSName = document.createElement("select");
+  const comma = document.createElement("span");
+
+  //DOB
+  const editMMInput = document.createElement("select");
+  const editDDInput = document.createElement("select");
+  const editYYInput = document.createElement("select");
+  //Gender
+  const editSGender = document.createElement("select");
+  //Status
+  const editSStatus = document.createElement("select");
+
+  //Job Position
+  const editJPosition = document.createElement("select");
+  const editLTeach = document.createElement("select");
+  const editPosSubject = document.createElement("select");
+
+  //Email and EID
+  const editEmail = document.createElement("input");
+  const copyeIDNumber = document.createElement("input");
+  //Buttons
+  const cancelBtn = document.createElement("button");
+  const saveBtn = document.createElement("button");
+
+  //Names
+  editForm.appendChild(divForNames);
+  divForNames.appendChild(editLName);
+  divForNames.appendChild(comma);
+  comma.textContent = ",";
+  divForNames.appendChild(editFName);
+  divForNames.appendChild(editMName);
+  divForNames.appendChild(editSName);
+  editSName.innerHTML = `<option value=" " disabled selected>Suffix</option>
+    <option value=" ">None</option>
+    <option>Jr.</option>
+    <option>Sr.</option>`;
+
+  //Assigning Class and ID
+  divForNames.classList.add("inputSeparator", "nameSeparator");
+  editLName.id = "editLName";
+  editFName.id = "editFName";
+  editMName.id = "editMName";
+  editSName.id = "editSName";
+  editLName.classList.add("inputBox", "nameInput");
+  editFName.classList.add("inputBox", "nameInput");
+  editMName.classList.add("inputBox", "nameInput");
+  editSName.classList.add("inputBox", "nameInput", "sName");
+  editLName.setAttribute("placeholder", "Last Name");
+  editFName.setAttribute("placeholder", "First Name");
+  editMName.setAttribute("placeholder", "Middle Name");
+
+  //Info
+  editForm.appendChild(divForInfo);
+  divForInfo.appendChild(fsForDOB);
+  fsForDOB.innerHTML = "<legend>DOB</legend>";
+  fsForDOB.appendChild(editMMInput);
+  editMMInput.innerHTML = `<option value="" disabled selected>MM</option>
+    <option>JAN</option>
+    <option>FEB</option>
+    <option>MAR</option>
+    <option>APR</option>
+    <option>MAY</option>
+    <option>JUN</option>
+    <option>JUL</option>
+    <option>AUG</option>
+    <option>SEP</option>
+    <option>OCT</option>
+    <option>NOV</option>
+    <option>DEC</option>`;
+  fsForDOB.appendChild(editDDInput);
+  editDDInput.innerHTML = `
+    <option value="" disabled selected>DD</option>`;
+  fsForDOB.appendChild(editYYInput);
+  editYYInput.innerHTML = `
+    <option value="" disabled selected>YYYY</option>`;
+
+  divForInfo.appendChild(editSGender);
+  editSGender.innerHTML = `<option value="" disabled selected>Gender</option>
+    <option>Male</option>
+    <option>Female</option>
+    <option>Others</option>`;
+  divForInfo.appendChild(editSStatus);
+  editSStatus.innerHTML = `<option value="" disabled selected>Status</option>
+    <option>Married</option>
+    <option>Single</option>`;
+
+  //Assign ID and Classes
+  editMMInput.id = "editMMInput";
+  editDDInput.id = "editDDInput";
+  editYYInput.id = "editYYInput";
+  divForInfo.classList.add("inputSeparator", "nameSeparator");
+  fsForDOB.classList.add("formFieldSet");
+  editMMInput.classList.add("dobS", "mmInput");
+  editDDInput.classList.add("dobS", "ddInput");
+  editYYInput.classList.add("dobS", "yyInput");
+  editSGender.classList.add("inputBox", "sGender");
+  editSStatus.classList.add("inputBox", "sStatus");
+  //Functions for Dates
+  editMMInput.addEventListener("change", function () {
+    assignDay(editMMInput, editDDInput);
+  });
+  yearInput(editYYInput);
+
+  //JOB POSITION
+  editForm.appendChild(divForJPosition);
+  divForJPosition.appendChild(editJPosition);
+  divForJPosition.appendChild(editLTeach);
+  divForJPosition.appendChild(editPosSubject);
+  //Options
+  editJPosition.innerHTML = `<option value="" disabled selected>Position</option>
+    <option>Teacher</option>
+    <option>Councelor</option>
+    <option>Security</option>
+    <option>Maintenance</option>
+    <option>IT</option>
+    <option>Accounting</option>
+    <option>Finance</option>
+    <option>Human Resource Management</option>
+    <option>School Nurse</option>
+    <option>School Dentist</option>
+    <option>Librarian</option>
+    <option>Food Service Specialist</option>`;
+  editLTeach.innerHTML = `<option value="" disabled selected>Assigned Level</option>
+    <option>Not Applicable</option>
+    <option>Grade 1</option>
+    <option>Grade 2</option>
+    <option>Grade 3</option>
+    <option>Grade 4</option>
+    <option>Grade 5</option>
+    <option>Grade 6</option>
+    <option>Grade 7</option>
+    <option>Grade 8</option>
+    <option>Grade 9</option>
+    <option>Grade 10</option>
+    <option>Grade 11</option>
+    <option>Grade 12</option>`;
+  editPosSubject.innerHTML = `<option value="" disabled selected>Subject</option>
+    <option>Not Applicable</option>
+    <option>Math</option>
+    <option>Science</option>
+    <option>Language</option>
+    <option>TLE</option>
+    <option>Filipino</option>
+    <option>Music</option>
+    <option>Arts</option>
+    <option>Physical Education</option>
+    <option>Health</option>
+    <option>Computer</option>`;
+
+  //Assign ID and Classes
+  editJPosition.id = "editJPosition";
+  editLTeach.id = "editLTeach";
+  editPosSubject.id = "editPosSubject";
+
+  divForJPosition.classList.add("inputSeparator", "nameSeparator");
+  editJPosition.classList.add("inputBox", "jPosition");
+  editLTeach.classList.add("inputBox", "lTeach");
+  editPosSubject.classList.add("inputBox", "posSubject");
+
+  //Email and EID
+  editForm.appendChild(divforEmailEID);
+  divforEmailEID.appendChild(fsForEmail);
+  divforEmailEID.appendChild(fsForEID);
+  fsForEmail.innerHTML = "<legend>Email</legend>";
+  fsForEID.innerHTML = "<legend>Employee ID</legend>";
+  fsForEmail.appendChild(editEmail);
+  fsForEID.appendChild(copyeIDNumber);
+
+  editEmail.setAttribute("type", "email");
+  copyeIDNumber.setAttribute("type", "text");
+
+  //Assign ID and CLasses
+  divforEmailEID.classList.add("inputSeparator");
+  fsForEmail.classList.add("formFieldSet");
+  fsForEID.classList.add("formFieldSet");
+  editEmail.classList.add("inputBox", "email_N_empID");
+  copyeIDNumber.classList.add("inputBox", "email_N_empID");
+  editEmail.id = "editEmail";
+  copyeIDNumber.id = "copyeIDNumber";
+  //Set attribute
+  editEmail.setAttribute("type", "email");
+  editEmail.setAttribute("placeholder", "example@company.com");
+  copyeIDNumber.setAttribute("type", "text");
+  copyeIDNumber.setAttribute("placeholder", "00000000");
+
+  // Buttons
+  editForm.appendChild(divForBtns);
+  divForBtns.appendChild(cancelBtn);
+  divForBtns.appendChild(saveBtn);
+  cancelBtn.setAttribute("type", "button");
+  saveBtn.setAttribute("type", "button");
+  cancelBtn.textContent = "Cancel";
+  saveBtn.textContent = "Submit";
+  divForBtns.classList.add("inputSeparator");
+  cancelBtn.classList.add("formBtn", "cButton");
+  saveBtn.classList.add("formBtn", "subButton");
+  cancelBtn.id = "cancelBtn";
+  saveBtn.id = "saveBtn";
+
+  //Get Values
+
+  editFName.value = f_fName;
+  editLName.value = f_lName;
+  editMName.value = f_mName;
+  editSName.value = f_sName;
+  editMMInput.value = f_mm;
+  editDDInput.value = f_dd;
+  editYYInput.value = f_yy;
+  editSGender.value = f_Gender;
+  editSStatus.value = f_Status;
+  editJPosition.value = f_Position;
+  editLTeach.value = f_AssignLevel;
+  editPosSubject.value = f_Subject;
+  editEmail.value = f_Email;
+  copyeIDNumber.value = f_EID;
+
+  //Buttons
+
+  //close editor function
+  const closeEditor = function () {
+    editForm.remove();
+    editor.classList.add("hideme");
+  };
+  //Save button
+  saveBtn.addEventListener("click", function () {
+    //Save and Exit
+    employeeID[copyeIDNumber.value]._Name._fName = editFName.value;
+    employeeID[copyeIDNumber.value]._Name._mName = editMName.value;
+    employeeID[copyeIDNumber.value]._Name._lName = editLName.value;
+    employeeID[copyeIDNumber.value]._Name._sName = editSName.value;
+    employeeID[copyeIDNumber.value].DOB.Month = editMMInput.value;
+    employeeID[copyeIDNumber.value].DOB.Day = editDDInput.value;
+    employeeID[copyeIDNumber.value].DOB.Year = editYYInput.value;
+    employeeID[copyeIDNumber.value].Gender = editSGender.value;
+    employeeID[copyeIDNumber.value].Status = editSStatus.value;
+    employeeID[copyeIDNumber.value].Position = editJPosition.value;
+    employeeID[copyeIDNumber.value].Assigned_Level = editLTeach.value;
+    employeeID[copyeIDNumber.value].Subject = editPosSubject.value;
+    employeeID[copyeIDNumber.value].Email = editEmail.value;
+    closeEditor();
+  });
+
+  //cancel button
+  cancelBtn.addEventListener("click", function () {
+    closeEditor();
+  });
+
+  //click overlay to exit
+  editOverlay.addEventListener("click", function () {
+    closeEditor();
+  });
+
+  // console.log(`working edit`, employeeID[newEmpID.textContent]);
+
+  //Generate Editor
+  // const
+};
