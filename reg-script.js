@@ -164,6 +164,8 @@ regForm.addEventListener("submit", function (e) {
       employeeID[newEmpID.textContent].Assigned_Level,
       employeeID[newEmpID.textContent].Subject,
       employeeID[newEmpID.textContent].Email,
+      newPosition,
+      newFullName,
       newEmpID.textContent
     );
 
@@ -557,6 +559,8 @@ const profileEditor = function (
   f_AssignLevel,
   f_Subject,
   f_Email,
+  dir_pos,
+  dir_FullName,
   f_EID
 ) {
   //parents
@@ -800,7 +804,7 @@ const profileEditor = function (
 
   //Buttons
 
-  //close editor function
+  //close editor's
   const closeEditor = function () {
     editForm.remove();
     editor.classList.add("hideme");
@@ -821,6 +825,9 @@ const profileEditor = function (
     employeeID[copyeIDNumber.value].Assigned_Level = editLTeach.value;
     employeeID[copyeIDNumber.value].Subject = editPosSubject.value;
     employeeID[copyeIDNumber.value].Email = editEmail.value;
+    dir_pos.textContent = editJPosition.value;
+    dir_FullName.textContent = editFName.value;
+    // f_EID = copyeIDNumber.value;
     closeEditor();
   });
 
