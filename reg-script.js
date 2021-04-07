@@ -153,7 +153,7 @@ regForm.addEventListener("submit", function (e) {
     //parents
     const editor = document.getElementById("editDialouge");
     const editOverlay = document.getElementById("editOverlay");
-    const editForm = document.getElementById("editForm");
+    const editForm = document.createElement("form");
     const fsForDOB = document.createElement("fieldset");
     const fsForEmail = document.createElement("fieldset");
     const fsForEID = document.createElement("fieldset");
@@ -164,8 +164,8 @@ regForm.addEventListener("submit", function (e) {
     const divForBtns = document.createElement("div");
 
     editor.classList.remove("hideme");
-    // editOverlay.classList.remove("hideme");
-    // editForm.classList.remove("hideme");
+    editor.appendChild(editForm);
+    editForm.id = "editForm";
 
     //inputs
 
@@ -393,6 +393,21 @@ regForm.addEventListener("submit", function (e) {
     //Save button
     saveBtn.addEventListener("click", function () {
       //Save and Exit
+      employeeID[newEmpID.textContent]._Name._fName = editFName.value;
+      employeeID[newEmpID.textContent]._Name._lName = editLName.value;
+      employeeID[newEmpID.textContent]._Name._mName = editMName.value;
+      employeeID[newEmpID.textContent]._Name._sName = editSName.value;
+      employeeID[newEmpID.textContent].DOB.Month = editMMInput.value;
+      employeeID[newEmpID.textContent].DOB.Day = editDDInput.value;
+      employeeID[newEmpID.textContent].DOB.Year = editYYInput.value;
+      employeeID[newEmpID.textContent].Gender = editSGender.value;
+      employeeID[newEmpID.textContent].Status = editSStatus.value;
+      employeeID[newEmpID.textContent].Position = editJPosition.value;
+      employeeID[newEmpID.textContent].Assigned_Level = editLTeach.value;
+      employeeID[newEmpID.textContent].Subject = editPosSubject.value;
+      employeeID[newEmpID.textContent].Email = editEmail.value;
+      newEmpID.textContent = copyeIDNumber.value;
+      editForm.remove();
       editor.classList.add("hideme");
     });
 
