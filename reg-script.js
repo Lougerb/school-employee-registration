@@ -37,11 +37,9 @@ const ifTeacher = function (jpos, tLevel, tSubject) {
     tSubject.value = "Subject";
     tLevel.disabled = true;
     tSubject.disabled = true;
-    console.log("Not Teacher");
   } else {
     tLevel.disabled = false;
     tSubject.disabled = false;
-    console.log("This is a taecher");
   }
 };
 //Calling function on load
@@ -133,7 +131,7 @@ regForm.addEventListener("submit", function (e) {
   // });
 
   newPosition.textContent = jPosition.value;
-  newFullName.textContent = `${fName} ${mName}. ${lName} ${sName}`;
+  newFullName.textContent = `${fName} ${mName[0]}. ${lName} ${sName}`;
   newEmpID.textContent = getEmpID.value;
   newActionBtn.appendChild(newEditBtn);
 
@@ -214,9 +212,9 @@ regForm.addEventListener("submit", function (e) {
 
   jPosition.value = "Position";
   getLTeach.value = "Assigned Level";
-  // getLTeach.disabled = true;
+  getLTeach.disabled = false;
   getSubject.value = "Subject";
-  // getSubject.disabled = true;
+  getSubject.disabled = false;
 
   getEmail.value = "";
   getGender.value = "";
@@ -575,6 +573,8 @@ const profileEditor = function (
   editPosSubject.value = f_Subject;
   editEmail.value = f_Email;
   copyeIDNumber.value = f_EID;
+  copyeIDNumber.readOnly;
+  copyeIDNumber.disabled = true;
 
   //Buttons
 
