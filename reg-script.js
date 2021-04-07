@@ -11,15 +11,18 @@ let empNum = 1;
 
 //Make name capitalize
 const capMyName = function (getName) {
-  const trimName = getName.trim();
-  const splitMyName = trimName.split(" ") && trimName.split("  ");
   const storeArrName = [];
+  const trimName = getName.trim();
+
+  const splitMyName = trimName.split(" ");
 
   for (let letsCap of splitMyName) {
     storeArrName.push(
       letsCap[0].toUpperCase() + letsCap.slice(1).toLowerCase()
     );
   }
+
+  // if()
   return storeArrName.join(" ");
 };
 
