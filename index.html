@@ -43,7 +43,7 @@
             name="nAME"
           />
           <select class="inputBox sName" id="sName" name="nAME">
-            <option value=" " disabled selected>Suffix</option>
+            <option value="" disabled selected>Suffix</option>
             <option value=" ">None</option>
             <option>Jr.</option>
             <option>Sr.</option>
@@ -57,7 +57,7 @@
             <legend>DOB</legend>
             <select class="dobS mmInput" id="mmInput">
               Month
-              <option value="" disabled selected>MM</option>
+              <option value="MM" disabled selected>MM</option>
               <option>JAN</option>
               <option>FEB</option>
               <option>MAR</option>
@@ -72,10 +72,10 @@
               <option>DEC</option>
             </select>
             <select class="dobS ddInput" id="ddInput">
-              <option value="" disabled selected>DD</option>
+              <option value="DD" disabled selected>DD</option>
             </select>
             <select class="dobS yyInput" id="yyInput">
-              <option value="" disabled selected>YYYY</option>
+              <option value="YYYY" disabled selected>YYYY</option>
             </select>
           </fieldset>
           <select class="inputBox sGender" id="sGender">
@@ -97,7 +97,7 @@
 
         <div class="inputSeparator">
           <select class="inputBox jPosition" id="jPosition">
-            <option value="" disabled selected>Position</option>
+            <option>Position</option>
             <option>Teacher</option>
             <option>Councelor</option>
             <option>Security</option>
@@ -111,9 +111,8 @@
             <option>Librarian</option>
             <option>Food Service Specialist</option>
           </select>
-          <select class="inputBox lTeach" id="lTeach">
-            <option value="" disabled selected>Assigned Level</option>
-            <option>Not Applicable</option>
+          <select class="inputBox lTeach" id="lTeach" disabled>
+            <option selected disabled>Assigned Level</option>
             <option>Grade 1</option>
             <option>Grade 2</option>
             <option>Grade 3</option>
@@ -127,9 +126,8 @@
             <option>Grade 11</option>
             <option>Grade 12</option>
           </select>
-          <select class="inputBox posSubject" id="posSubject">
-            <option value="" disabled selected>Subject</option>
-            <option>Not Applicable</option>
+          <select class="inputBox posSubject" id="posSubject" disabled>
+            <option selected disabled>Subject</option>
             <option class="posNotTeacher">Math</option>
             <option class="posNotTeacher">Science</option>
             <option class="posNotTeacher">Language</option>
