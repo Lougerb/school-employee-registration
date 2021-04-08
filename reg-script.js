@@ -4,17 +4,13 @@
 // dbConnect.getConnect();
 
 const regForm = document.getElementById("regForm");
-//ID number Generator
-//TO BE FIX
-const currentWholeDate = new Date();
-const currentYear = currentWholeDate.getFullYear();
-// // console.log(currentYear);
 
 // let batchNum = 0;
 let empNum = 1;
 
-//Month's dates
-
+//Month's dates----------------------------------------------
+const currentWholeDate = new Date();
+const currentYear = currentWholeDate.getFullYear();
 const inputMonth = document.getElementById("mmInput");
 const inputDay = document.getElementById("ddInput");
 const inputYear = document.getElementById("yyInput");
@@ -35,8 +31,10 @@ const removePrevDays = function (rd) {
     rd.innerHTML -= `<option>${xDays}</option>`;
   }
 };
+
+//Function to update Number of days in selec input when Selecting a certain month
 const assignDay = function (mm, dd) {
-  //Adding number dates on selected Month
+  // loop for Febuary's days
   if (mm.value === "FEB") {
     removePrevDays(dd);
     for (let febDay = 1; febDay <= 29; febDay++) {
@@ -44,7 +42,7 @@ const assignDay = function (mm, dd) {
       dd.innerHTML += `<option>${febDay}</option>`;
     }
   }
-
+  // loop for Months with 31 days
   for (let monthsWith31 = 0; monthsWith31 <= thirtyOne.length; monthsWith31++) {
     if (mm.value === thirtyOne[monthsWith31]) {
       removePrevDays(dd);
@@ -54,7 +52,7 @@ const assignDay = function (mm, dd) {
       }
     }
   }
-
+  // loop for Months with 30 days
   for (let monthsWith30 = 0; monthsWith30 <= thirty.length; monthsWith30++) {
     if (mm.value === thirty[monthsWith30]) {
       removePrevDays(dd);
@@ -65,25 +63,26 @@ const assignDay = function (mm, dd) {
   }
 };
 
-//We use "Change" for Select Tag event listener
+//When input month is change on selected month
+//day selection will load
 inputMonth.addEventListener("change", function () {
   assignDay(inputMonth, inputDay);
 });
 
 //Year
+//Function to update Year selection when Current year is change
 const yearInput = function (yy) {
   for (let yearBorn = currentYear - 80; yearBorn <= currentYear; yearBorn++) {
     yy.innerHTML += `<option>${yearBorn}</option>`;
   }
 };
-
+//Call function on load to load all option in the Select input
 yearInput(inputYear);
 
 //Make name capitalize
 const capMyName = function (getName) {
   const storeArrName = [];
   const trimName = getName.trim();
-
   const splitMyName = trimName.split(" ");
 
   for (let letsCap of splitMyName) {
@@ -92,7 +91,6 @@ const capMyName = function (getName) {
     );
   }
 
-  // if()
   return storeArrName.join(" ");
 };
 
@@ -101,6 +99,7 @@ const jPosition = document.getElementById("jPosition");
 const getLTeach = document.getElementById("lTeach");
 const getSubject = document.getElementById("posSubject");
 
+//Will disable Assigned Level and Subject select if Job Position is not teacher
 const ifTeacher = function (jpos, tLevel, tSubject) {
   if (jpos.value != "" && jpos.value != "Teacher") {
     tLevel.value = "NotApplicable";
@@ -115,16 +114,16 @@ const ifTeacher = function (jpos, tLevel, tSubject) {
   }
 };
 //Calling function on load
-window.addEventListener("load", function () {
-  ifTeacher(jPosition, getLTeach, getSubject);
-});
-//Function when Position is change
+ifTeacher(jPosition, getLTeach, getSubject);
+
+//Function when Position is change to teacher or not
 jPosition.addEventListener("change", function () {
   ifTeacher(jPosition, getLTeach, getSubject);
 });
 
 // //Employee ID
-// const eIDNumber = document.getElementById("eIDNumber");
+//format: YYMMDDEN
+// YY= Year, MM=Month, DD=Day, EN=Employee Number
 
 //Getting Month's Number
 //We added +1 because January starts with 0
@@ -142,7 +141,7 @@ const _twoDigitDate = function () {
 const _twoDigitempNum = function () {
   return empNum < 10 ? leadingZero + empNum : empNum;
 };
-//Generate ID Number
+//Function to Generate ID Number
 const generateEID = function () {
   eIDNumber.value =
     String(currentYear).slice(2) +
@@ -150,23 +149,18 @@ const generateEID = function () {
     _twoDigitDate() +
     _twoDigitempNum();
 };
+
+//function to call to display Employee ID onload
 generateEID();
-// eIDNumber.value =
-//   String(currentYear).slice(2) +
-//   _twoDigitMonth() +
-//   _twoDigitDate() +
-//   _twoDigitempNum();
 
 //
+//Event to incriment employee number
 const regSubBtn = document.getElementById("submitButton");
 regSubBtn.addEventListener("click", function () {
   empNum++;
 });
 
-/////////////////////////////////////////////////////////////////////
-
 //addEventListener must listen to the Form INSTEAD of the Submit Button of the form
-
 //Submit Button
 regForm.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -237,21 +231,15 @@ regForm.addEventListener("submit", function (e) {
     Subject: `${getSubject.value}`,
     Email: `${getEmail.value}`,
   };
-  /////////////////////////////////////////////////////////////////////////
+
+  //function to get the current Employee ID before submitting
   generateEID();
-  // eIDNumber.value =
-  //   String(currentYear).slice(2) +
-  //   _twoDigitMonth() +
-  //   _twoDigitDate() +
-  //   _twoDigitempNum();
-  /////////////////////////////////////////////////////////////////////////
 
   //EDIT BUTTON
   newEditBtn.addEventListener("click", function () {
     getLTeach.disabled = false;
     getSubject.disabled = false;
-
-    // assignDay(getDobMM, getDobDD);
+    //calling Editor's function
     profileEditor(
       employeeID[newEmpID.textContent]._Name._fName,
       employeeID[newEmpID.textContent]._Name._mName,
@@ -277,18 +265,16 @@ regForm.addEventListener("submit", function (e) {
   getFName.value = "";
   getMName.value = "";
   getSName.value = "";
-
   getDobMM.value = "";
+  //function to remove days after submitting
   removePrevDays(getDobDD);
-  getDobDD.innerHTML = `<option>DD</option>`;
+  getDobDD.innerHTML = ` <option value="" disabled selected>DD</option>`;
   getDobYY.value = "YYYY";
-
   jPosition.value = "";
   getLTeach.value = "";
   getLTeach.disabled = false;
   getSubject.value = "";
   getSubject.disabled = false;
-
   getEmail.value = "";
   getGender.value = "";
   getStatus.value = "";
@@ -558,29 +544,23 @@ const profileEditor = function (
   editMName.value = f_mName;
   editSName.value = f_sName;
   editMMInput.value = f_mm;
+  //Function to make Day input work after Selected month appear
   assignDay(editMMInput, editDDInput);
   editDDInput.value = f_dd;
-  // editDDInput.value = employeeID[copyeIDNumber.value].DOB.Day;
   editYYInput.value = f_yy;
   editSGender.value = f_Gender;
   editSStatus.value = f_Status;
   editJPosition.value = f_Position;
+  //Function to make Assigned Level and Subject work after Job Position shows up
   ifTeacher(editJPosition, editLTeach, editPosSubject);
   editLTeach.value = f_AssignLevel;
   editPosSubject.value = f_Subject;
-  // editJPosition.value = employeeID[copyeIDNumber.value].Position;
-  // editLTeach.value = employeeID[copyeIDNumber.value].Assigned_Level;
-  // editPosSubject.value = employeeID[copyeIDNumber.value].Subject;
   editEmail.value = f_Email;
   copyeIDNumber.value = f_EID;
   copyeIDNumber.readOnly;
   copyeIDNumber.disabled = true;
 
-  //function to
-  // assignDay(f_mm, f_dd);
-  // ifTeacher(f_Position, f_AssignLevel, f_Subject);
   //Buttons
-
   //close editor's
   const closeEditor = function () {
     editForm.remove();
@@ -610,7 +590,6 @@ const profileEditor = function (
     employeeID[copyeIDNumber.value].Email = editEmail.value;
     dir_pos.textContent = editJPosition.value;
     dir_FullName.textContent = `${capLname}, ${capFname} ${capMname[0]}. ${dir_sName}`;
-    // f_EID = copyeIDNumber.value;
 
     assignDay(editMMInput, editDDInput);
     ifTeacher(editJPosition, editLTeach, editPosSubject);
@@ -625,9 +604,4 @@ const profileEditor = function (
   editOverlay.addEventListener("click", function () {
     closeEditor();
   });
-
-  // console.log(`working edit`, employeeID[newEmpID.textContent]);
-
-  //Generate Editor
-  // const
 };
