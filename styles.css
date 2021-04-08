@@ -143,6 +143,9 @@ legend {
 #tLabel {
   background-color: rgb(0, 183, 255);
 }
+#tLabel > th {
+  width: 200px;
+}
 .email_N_empID {
   margin: 0px;
 }

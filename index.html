@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <title>Employee Registration</title>
+    <title>School Employee Registration</title>
   </head>
   <body>
     <!-- Edit Dialouge -->
@@ -14,7 +14,7 @@
       <div id="editOverlay"></div>
     </div>
 
-    <header><h1>Employee Registration</h1></header>
+    <header><h1>School Employee Registration</h1></header>
 
     <div id="container">
       <form id="regForm">
@@ -42,7 +42,7 @@
             id="mName"
             name="nAME"
           />
-          <select class="inputBox sName" id="sName" name="nAME">
+          <select class="inputBox sName" id="sName" name="nAME" required>
             <option value="" disabled selected>Suffix</option>
             <option value=" ">None</option>
             <option>Jr.</option>
@@ -55,9 +55,9 @@
         <div class="inputSeparator">
           <fieldset class="formFieldSet">
             <legend>DOB</legend>
-            <select class="dobS mmInput" id="mmInput">
+            <select class="dobS mmInput" id="mmInput" required>
               Month
-              <option value="MM" disabled selected>MM</option>
+              <option value="" disabled selected>MM</option>
               <option>JAN</option>
               <option>FEB</option>
               <option>MAR</option>
@@ -78,14 +78,14 @@
               <option value="YYYY" disabled selected>YYYY</option>
             </select>
           </fieldset>
-          <select class="inputBox sGender" id="sGender">
+          <select class="inputBox sGender" id="sGender" required>
             Gender
             <option value="" disabled selected>Gender</option>
             <option>Male</option>
             <option>Female</option>
             <option>Others</option>
           </select>
-          <select class="inputBox sStatus" id="sStatus">
+          <select class="inputBox sStatus" id="sStatus" required>
             Status
             <option value="" disabled selected>Status</option>
             <option>Married</option>
@@ -96,9 +96,9 @@
         <!-- JOB DESC -->
 
         <div class="inputSeparator">
-          <select class="inputBox jPosition" id="jPosition">
-            <option>Position</option>
-            <option>Teacher</option>
+          <select class="inputBox jPosition" id="jPosition" required>
+            <option disabled selected value="">Position</option>
+            <option value="Teacher">Teacher</option>
             <option>Councelor</option>
             <option>Security</option>
             <option>Maintenance</option>
@@ -111,8 +111,8 @@
             <option>Librarian</option>
             <option>Food Service Specialist</option>
           </select>
-          <select class="inputBox lTeach" id="lTeach" disabled>
-            <option selected disabled>Assigned Level</option>
+          <select class="inputBox lTeach" id="lTeach" required>
+            <option disabled selected value="">Assigned Level</option>
             <option>Grade 1</option>
             <option>Grade 2</option>
             <option>Grade 3</option>
@@ -125,19 +125,21 @@
             <option>Grade 10</option>
             <option>Grade 11</option>
             <option>Grade 12</option>
+            <option value="NotApplicable" disabled>Not Applicable</option>
           </select>
-          <select class="inputBox posSubject" id="posSubject" disabled>
-            <option selected disabled>Subject</option>
-            <option class="posNotTeacher">Math</option>
-            <option class="posNotTeacher">Science</option>
-            <option class="posNotTeacher">Language</option>
-            <option class="posNotTeacher">TLE</option>
-            <option class="posNotTeacher">Filipino</option>
-            <option class="posNotTeacher">Music</option>
-            <option class="posNotTeacher">Arts</option>
-            <option class="posNotTeacher">Physical Education</option>
-            <option class="posNotTeacher">Health</option>
-            <option class="posNotTeacher">Computer</option>
+          <select class="inputBox posSubject" id="posSubject" disabled required>
+            <option selected disabled value="">Subject</option>
+            <option>Math</option>
+            <option>Science</option>
+            <option>Language</option>
+            <option>TLE</option>
+            <option>Filipino</option>
+            <option>Music</option>
+            <option>Arts</option>
+            <option>Physical Education</option>
+            <option>Health</option>
+            <option>Computer</option>
+            <option value="NotApplicable" disabled>Not Applicable</option>
           </select>
         </div>
         <!-- Email and ID Number -->
@@ -149,6 +151,7 @@
               placeholder="example@company.com"
               class="inputBox email_N_empID"
               id="eMail"
+              required
             />
           </fieldset>
           <fieldset class="formFieldSet">
@@ -183,14 +186,7 @@
             <th>Action</th>
           </tr>
         </thead>
-        <tbody id="empInfo">
-          <tr class="dataRow">
-            <th>20210101</th>
-            <th>Juan Juanito D. Dela Cruz</th>
-            <th>Tagalinis</th>
-            <th>*</th>
-          </tr>
-        </tbody>
+        <tbody id="empInfo"></tbody>
       </table>
     </div>
     <script src="reg-script.js"></script>

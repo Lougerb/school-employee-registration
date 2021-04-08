@@ -1,0 +1,22 @@
+{
+  "name": "employee-rgstr-dir",
+  "version": "1.0.0",
+  "description": "",
+  "main": "reg-script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lougerb/employee-rgstr-dir.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lougerb/employee-rgstr-dir/issues"
+  },
+  "homepage": "https://github.com/Lougerb/employee-rgstr-dir#readme",
+  "dependencies": {
+    "mongodb": "^3.6.6"
+  }
+}
