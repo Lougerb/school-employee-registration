@@ -278,7 +278,7 @@ regForm.addEventListener("submit", function (e) {
   getMName.value = "";
   getSName.value = "";
 
-  getDobMM.value = "MM";
+  getDobMM.value = "";
   removePrevDays(getDobDD);
   getDobDD.innerHTML = `<option>DD</option>`;
   getDobYY.value = "YYYY";
@@ -550,28 +550,35 @@ const profileEditor = function (
   });
 
   //Get Values
+  assignDay(editMMInput, editDDInput);
+  ifTeacher(editJPosition, editLTeach, editPosSubject);
 
   editFName.value = f_fName;
   editLName.value = f_lName;
   editMName.value = f_mName;
   editSName.value = f_sName;
   editMMInput.value = f_mm;
+  assignDay(editMMInput, editDDInput);
   editDDInput.value = f_dd;
+  // editDDInput.value = employeeID[copyeIDNumber.value].DOB.Day;
   editYYInput.value = f_yy;
   editSGender.value = f_Gender;
   editSStatus.value = f_Status;
   editJPosition.value = f_Position;
+  ifTeacher(editJPosition, editLTeach, editPosSubject);
   editLTeach.value = f_AssignLevel;
   editPosSubject.value = f_Subject;
+  // editJPosition.value = employeeID[copyeIDNumber.value].Position;
+  // editLTeach.value = employeeID[copyeIDNumber.value].Assigned_Level;
+  // editPosSubject.value = employeeID[copyeIDNumber.value].Subject;
   editEmail.value = f_Email;
   copyeIDNumber.value = f_EID;
   copyeIDNumber.readOnly;
   copyeIDNumber.disabled = true;
 
   //function to
-  assignDay(editMMInput, editDDInput);
-  ifTeacher(editJPosition, editLTeach, editPosSubject);
-
+  // assignDay(f_mm, f_dd);
+  // ifTeacher(f_Position, f_AssignLevel, f_Subject);
   //Buttons
 
   //close editor's
@@ -609,7 +616,6 @@ const profileEditor = function (
     ifTeacher(editJPosition, editLTeach, editPosSubject);
     closeEditor();
   });
-
   //cancel button
   cancelBtn.addEventListener("click", function () {
     closeEditor();
