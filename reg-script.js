@@ -1,5 +1,6 @@
 "use strict";
 // var dbConnect = require("./db");
+
 // dbConnect.getConnect();
 
 const regForm = document.getElementById("regForm");
