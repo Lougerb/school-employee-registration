@@ -8,14 +8,9 @@ const regForm = document.getElementById("regForm");
 // let batchNum = 0;
 let empNum = 1;
 
-<<<<<<< HEAD
 //Month's dates----------------------------------------------
 const currentWholeDate = new Date();
 const currentYear = currentWholeDate.getFullYear();
-=======
-//Month's dates
-
->>>>>>> 828909d329808c83928a6f397a551bfee9fc4064
 const inputMonth = document.getElementById("mmInput");
 const inputDay = document.getElementById("ddInput");
 const inputYear = document.getElementById("yyInput");
@@ -36,15 +31,10 @@ const removePrevDays = function (rd) {
     rd.innerHTML -= `<option>${xDays}</option>`;
   }
 };
-<<<<<<< HEAD
 
 //Function to update Number of days in selec input when Selecting a certain month
 const assignDay = function (mm, dd) {
   // loop for Febuary's days
-=======
-const assignDay = function (mm, dd) {
-  //Adding number dates on selected Month
->>>>>>> 828909d329808c83928a6f397a551bfee9fc4064
   if (mm.value === "FEB") {
     removePrevDays(dd);
     for (let febDay = 1; febDay <= 29; febDay++) {
@@ -52,11 +42,7 @@ const assignDay = function (mm, dd) {
       dd.innerHTML += `<option>${febDay}</option>`;
     }
   }
-<<<<<<< HEAD
   // loop for Months with 31 days
-=======
-
->>>>>>> 828909d329808c83928a6f397a551bfee9fc4064
   for (let monthsWith31 = 0; monthsWith31 <= thirtyOne.length; monthsWith31++) {
     if (mm.value === thirtyOne[monthsWith31]) {
       removePrevDays(dd);
@@ -66,11 +52,7 @@ const assignDay = function (mm, dd) {
       }
     }
   }
-<<<<<<< HEAD
   // loop for Months with 30 days
-=======
-
->>>>>>> 828909d329808c83928a6f397a551bfee9fc4064
   for (let monthsWith30 = 0; monthsWith30 <= thirty.length; monthsWith30++) {
     if (mm.value === thirty[monthsWith30]) {
       removePrevDays(dd);
@@ -81,31 +63,19 @@ const assignDay = function (mm, dd) {
   }
 };
 
-<<<<<<< HEAD
 //When input month is change on selected month
 //day selection will load
-=======
-//We use "Change" for Select Tag event listener
->>>>>>> 828909d329808c83928a6f397a551bfee9fc4064
 inputMonth.addEventListener("change", function () {
   assignDay(inputMonth, inputDay);
 });
 
 //Year
-<<<<<<< HEAD
 //Function to update Year selection when Current year is change
-=======
->>>>>>> 828909d329808c83928a6f397a551bfee9fc4064
 const yearInput = function (yy) {
   for (let yearBorn = currentYear - 80; yearBorn <= currentYear; yearBorn++) {
     yy.innerHTML += `<option>${yearBorn}</option>`;
   }
 };
-<<<<<<< HEAD
-//Call function on load to load all option in the Select input
-=======
-
->>>>>>> 828909d329808c83928a6f397a551bfee9fc4064
 yearInput(inputYear);
 
 //Make name capitalize
@@ -268,12 +238,8 @@ regForm.addEventListener("submit", function (e) {
   newEditBtn.addEventListener("click", function () {
     getLTeach.disabled = false;
     getSubject.disabled = false;
-<<<<<<< HEAD
-    //calling Editor's function
-=======
 
     // assignDay(getDobMM, getDobDD);
->>>>>>> 828909d329808c83928a6f397a551bfee9fc4064
     profileEditor(
       employeeID[newEmpID.textContent]._Name._fName,
       employeeID[newEmpID.textContent]._Name._mName,
@@ -314,28 +280,6 @@ regForm.addEventListener("submit", function (e) {
   getStatus.value = "";
 });
 
-<<<<<<< HEAD
-=======
-//Job position
-// const jPosition = document.getElementById("jPosition");
-// const getTeachLevel = document.getElementById("lTeach");
-// const f_getSubject = document.getElementById("posSubject");
-
-// jPosition.addEventListener("change", function () {
-//   if (jPosition.value != "Teacher") {
-//     getTeachLevel.value = "Not Applicable";
-//     f_getSubject.value = "Not Applicable";
-//     getTeachLevel.disabled = true;
-//     f_getSubject.disabled = true;
-//     console.log("Not Teacher");
-//   } else {
-//     getTeachLevel.disabled = false;
-//     f_getSubject.disabled = false;
-//     console.log("This is a taecher");
-//   }
-// });
-
->>>>>>> 828909d329808c83928a6f397a551bfee9fc4064
 //Object
 //Storing Data
 const schoolEmployees = {
@@ -600,10 +544,7 @@ const profileEditor = function (
   editMName.value = f_mName;
   editSName.value = f_sName;
   editMMInput.value = f_mm;
-<<<<<<< HEAD
   //Function to make Day input work after Selected month appear
-=======
->>>>>>> 828909d329808c83928a6f397a551bfee9fc4064
   assignDay(editMMInput, editDDInput);
   editDDInput.value = f_dd;
   editYYInput.value = f_yy;
