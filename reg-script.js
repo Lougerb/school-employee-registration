@@ -3,19 +3,17 @@
 
 // dbConnect.getConnect();
 
+//get main form Element
 const regForm = document.getElementById("regForm");
 
-// let batchNum = 0;
-let empNum = 1;
-
 //Month's dates----------------------------------------------
-const currentWholeDate = new Date();
-const currentYear = currentWholeDate.getFullYear();
-const inputMonth = document.getElementById("mmInput");
-const inputDay = document.getElementById("ddInput");
-const inputYear = document.getElementById("yyInput");
-const thirtyOne = ["JAN", "MAR", "MAY", "JUL", "AUG", "OCT", "DEC"];
-const thirty = ["APR", "JUN", "SEP", "NOV"];
+const currentWholeDate = new Date(),
+  currentYear = currentWholeDate.getFullYear(),
+  inputMonth = document.getElementById("mmInput"),
+  inputDay = document.getElementById("ddInput"),
+  inputYear = document.getElementById("yyInput"),
+  thirtyOne = ["JAN", "MAR", "MAY", "JUL", "AUG", "OCT", "DEC"],
+  thirty = ["APR", "JUN", "SEP", "NOV"];
 
 //We use loop to call all the element with the same class name
 //for example, Month/day/year
@@ -126,9 +124,9 @@ jPosition.addEventListener("change", function () {
 
 //Getting Month's Number
 //We added +1 because January starts with 0
-const currentMonth = currentWholeDate.getMonth() + 1;
-const currentDate = currentWholeDate.getDate();
-const leadingZero = "0";
+const currentMonth = currentWholeDate.getMonth() + 1,
+  currentDate = currentWholeDate.getDate(),
+  leadingZero = "0";
 //Make single Digit Month to 2 digit with leading Zero
 const _twoDigitMonth = function () {
   return currentMonth < 10 ? leadingZero + currentMonth : currentMonth;
@@ -137,10 +135,13 @@ const _twoDigitMonth = function () {
 const _twoDigitDate = function () {
   return currentDate < 10 ? leadingZero + currentDate : currentDate;
 };
+
+//Function to Generate ID Number
+let empNum = 1;
 const _twoDigitempNum = function () {
   return empNum < 10 ? leadingZero + empNum : empNum;
 };
-//Function to Generate ID Number
+
 const generateEID = function () {
   eIDNumber.value =
     String(currentYear).slice(2) +
@@ -162,31 +163,30 @@ regSubBtn.addEventListener("click", function () {
 //addEventListener must listen to the Form INSTEAD of the Submit Button of the form
 //Submit Button
 regForm.addEventListener("submit", function (e) {
+  //To prevent page refresh when submit is clicked
   e.preventDefault();
-  const getLName = document.getElementById("lName");
-  const getFName = document.getElementById("fName");
-  const getMName = document.getElementById("mName");
-  const getSName = document.getElementById("sName");
-  const getEmpID = document.getElementById("eIDNumber");
-  const getDobMM = document.getElementById("mmInput");
-  const getDobDD = document.getElementById("ddInput");
-  const getDobYY = document.getElementById("yyInput");
-  const getGender = document.getElementById("sGender");
+  //Get Elements
+  const getLName = document.getElementById("lName"),
+    getFName = document.getElementById("fName"),
+    getMName = document.getElementById("mName"),
+    getSName = document.getElementById("sName"),
+    getEmpID = document.getElementById("eIDNumber"),
+    getDobMM = document.getElementById("mmInput"),
+    getDobDD = document.getElementById("ddInput"),
+    getDobYY = document.getElementById("yyInput"),
+    getGender = document.getElementById("sGender"),
+    getEmail = document.getElementById("eMail"),
+    getStatus = document.getElementById("sStatus"),
+    parentTable = document.getElementById("empInfo");
 
-  const getEmail = document.getElementById("eMail");
-  const getStatus = document.getElementById("sStatus");
-  // const jPosition = document.getElementById("jPosition");
-  // const getLTeach = document.getElementById("lTeach");
-  // const getSubject = document.getElementById("posSubject");
-
-  const parentTable = document.querySelector("#empInfo");
-  const newEmpRow = document.createElement("tr");
-  const newEmpID = document.createElement("th");
-  const newPosition = document.createElement("th");
-  const newFullName = document.createElement("th");
-  const newActionBtn = document.createElement("th"); //Must be Button
-  const newEditBtn = document.createElement("button");
-
+  //Generating Element
+  const newEmpRow = document.createElement("tr"),
+    newEmpID = document.createElement("th"),
+    newPosition = document.createElement("th"),
+    newFullName = document.createElement("th"),
+    newActionBtn = document.createElement("th"), //Must be Button
+    newEditBtn = document.createElement("button");
+  //Organizing Elements
   parentTable.appendChild(newEmpRow);
   newEmpRow.appendChild(newEmpID);
   newEmpRow.appendChild(newFullName);
@@ -194,10 +194,11 @@ regForm.addEventListener("submit", function (e) {
   newEmpRow.appendChild(newActionBtn);
   newEmpRow.classList.add("dataRow");
 
-  const fName = capMyName(getFName.value);
-  const mName = capMyName(getMName.value);
-  const lName = capMyName(getLName.value);
-  const sName = getSName.value; //does not need capitalization due to Selection is given
+  //Capitalizing Names
+  const fName = capMyName(getFName.value),
+    mName = capMyName(getMName.value),
+    lName = capMyName(getLName.value),
+    sName = getSName.value; //does not need capitalization due to Selection is given
 
   newPosition.textContent = jPosition.value;
   newFullName.textContent = `${fName} ${mName[0]}. ${lName} ${sName}`;
@@ -206,9 +207,8 @@ regForm.addEventListener("submit", function (e) {
 
   newEditBtn.classList.add("editBtn");
   newEditBtn.textContent = "Edit";
-  /////////////////////////////////////////////////////////////////////////
-  //Sending data to Object
 
+  //Sending data to Object
   //Formula
   //employeeID[`newEmpID.textContent`]={Name: {_fName:,_mName: ,_lName: ,_sName: ,},DOB:{Month:,Day:,Year:,},Gender:,Status: ,Position:,Assigned_Level: ,Subject: ,Email:,}
   employeeID[newEmpID.textContent] = {
@@ -234,7 +234,7 @@ regForm.addEventListener("submit", function (e) {
   //function to get the current Employee ID before submitting
   generateEID();
 
-  //EDIT BUTTON
+  //EDIT EVENT BUTTON
   newEditBtn.addEventListener("click", function () {
     getLTeach.disabled = false;
     getSubject.disabled = false;
@@ -260,7 +260,7 @@ regForm.addEventListener("submit", function (e) {
     );
   });
 
-  //clearing after submitting
+  //clearing form after submitting
   getLName.value = "";
   getFName.value = "";
   getMName.value = "";
@@ -285,9 +285,10 @@ regForm.addEventListener("submit", function (e) {
 const schoolEmployees = {
   employeeID: {},
 };
-
+//Variable where we can call to store Data
 const { employeeID } = schoolEmployees;
 
+//Editor Function
 const profileEditor = function (
   f_fName,
   f_mName,
@@ -306,52 +307,52 @@ const profileEditor = function (
   dir_FullName,
   f_EID
 ) {
-  //parents
-  const editor = document.getElementById("editDialouge");
-  const editOverlay = document.getElementById("editOverlay");
-  const editForm = document.createElement("form");
-  const fsForDOB = document.createElement("fieldset");
-  const fsForEmail = document.createElement("fieldset");
-  const fsForEID = document.createElement("fieldset");
-  const divForNames = document.createElement("div");
-  const divForInfo = document.createElement("div");
-  const divForJPosition = document.createElement("div");
-  const divforEmailEID = document.createElement("div");
-  const divForBtns = document.createElement("div");
+  //Variables to generate elemetns
+  const editor = document.getElementById("editDialouge"),
+    editOverlay = document.getElementById("editOverlay"),
+    editForm = document.createElement("form"),
+    fsForDOB = document.createElement("fieldset"),
+    fsForEmail = document.createElement("fieldset"),
+    fsForEID = document.createElement("fieldset"),
+    divForNames = document.createElement("div"),
+    divForInfo = document.createElement("div"),
+    divForJPosition = document.createElement("div"),
+    divforEmailEID = document.createElement("div"),
+    divForBtns = document.createElement("div");
 
+  //To show editor's overlay and frame
   editor.classList.remove("hideme");
   editor.appendChild(editForm);
   editForm.id = "editForm";
 
-  //inputs
+  //Generate Inputs
 
   //Name
-  const editLName = document.createElement("input");
-  const editFName = document.createElement("input");
-  const editMName = document.createElement("input");
-  const editSName = document.createElement("select");
-  const comma = document.createElement("span");
+  const editLName = document.createElement("input"),
+    editFName = document.createElement("input"),
+    editMName = document.createElement("input"),
+    editSName = document.createElement("select"),
+    comma = document.createElement("span");
 
   //DOB
-  const editMMInput = document.createElement("select");
-  const editDDInput = document.createElement("select");
-  const editYYInput = document.createElement("select");
+  const editMMInput = document.createElement("select"),
+    editDDInput = document.createElement("select"),
+    editYYInput = document.createElement("select");
   //Gender
   const editSGender = document.createElement("select");
   //Status
   const editSStatus = document.createElement("select");
-
   //Job Position
-  const editJPosition = document.createElement("select");
-  const editLTeach = document.createElement("select");
-  const editPosSubject = document.createElement("select");
+  const editJPosition = document.createElement("select"),
+    editLTeach = document.createElement("select"),
+    editPosSubject = document.createElement("select");
 
   //Email and EID
-  const editEmail = document.createElement("input");
-  const copyeIDNumber = document.createElement("input");
+  const editEmail = document.createElement("input"),
+    copyeIDNumber = document.createElement("input");
   //Buttons
-  const cancelBtn = document.createElement("button");
-  const saveBtn = document.createElement("button");
+  const cancelBtn = document.createElement("button"),
+    saveBtn = document.createElement("button");
 
   //Names
   editForm.appendChild(divForNames);
@@ -361,7 +362,7 @@ const profileEditor = function (
   divForNames.appendChild(editFName);
   divForNames.appendChild(editMName);
   divForNames.appendChild(editSName);
-  editSName.innerHTML = `<option value=" " disabled selected>Suffix</option>
+  editSName.innerHTML = `<option value="" disabled selected>Suffix</option>
     <option value=" ">None</option>
     <option>Jr.</option>
     <option>Sr.</option>`;
