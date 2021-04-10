@@ -14,4 +14,8 @@ var getConnect = function getConnection() {
     client.close();
   });
 };
+
+const sumMe = function (x, y) {
+  return x + y;
+};
 module.exports.getConnect = getConnection();
