@@ -251,6 +251,7 @@ regForm.addEventListener("submit", function (e) {
       employeeID[newEmpID.textContent].Assigned_Level,
       employeeID[newEmpID.textContent].Subject,
       employeeID[newEmpID.textContent].Email,
+      newEmpRow,
       newPosition,
       newFullName,
       newEmpID.textContent
@@ -300,6 +301,7 @@ const profileEditor = function (
   f_AssignLevel,
   f_Subject,
   f_Email,
+  dir_row,
   dir_pos,
   dir_FullName,
   f_EID
@@ -349,7 +351,8 @@ const profileEditor = function (
     copyeIDNumber = document.createElement("input");
   //Buttons
   const cancelBtn = document.createElement("button"),
-    saveBtn = document.createElement("button");
+    saveBtn = document.createElement("button"),
+    deleteBtn = document.createElement("button");
 
   //Names
   editForm.appendChild(divForNames);
@@ -517,15 +520,20 @@ const profileEditor = function (
 
   // Buttons
   editForm.appendChild(divForBtns);
+  divForBtns.appendChild(deleteBtn); //
   divForBtns.appendChild(cancelBtn);
   divForBtns.appendChild(saveBtn);
+  deleteBtn.setAttribute("type", "button"); //
   cancelBtn.setAttribute("type", "button");
   saveBtn.setAttribute("type", "button");
+  deleteBtn.textContent = "Delete Profile"; //
   cancelBtn.textContent = "Cancel";
   saveBtn.textContent = "Save & Exit";
   divForBtns.classList.add("inputSeparator");
+  deleteBtn.classList.add("formBtn", "dButton");
   cancelBtn.classList.add("formBtn", "cButton");
-  saveBtn.classList.add("formBtn", "subButton");
+  saveBtn.classList.add("formBtn", "saveButton");
+  deleteBtn.id = "deleteBtn";
   cancelBtn.id = "cancelBtn";
   saveBtn.id = "saveBtn";
 
@@ -589,13 +597,50 @@ const profileEditor = function (
     dir_pos.textContent = editJPosition.value;
     dir_FullName.textContent = `${capLname}, ${capFname} ${capMname[0]}. ${dir_sName}`;
 
-    assignDay(editMMInput, editDDInput);
-    ifTeacher(editJPosition, editLTeach, editPosSubject);
     closeEditor();
   });
   //cancel button
   cancelBtn.addEventListener("click", function () {
     closeEditor();
+  });
+
+  //Delete Button
+  deleteBtn.addEventListener("click", function () {
+    const dYes = document.createElement("button");
+    const dNo = document.createElement("button");
+    const dOverlay = document.createElement("div");
+    const dWrapper = document.createElement("div");
+    const rUSure = document.createElement("span");
+
+    editor.appendChild(dOverlay);
+    editor.appendChild(dWrapper);
+    dWrapper.appendChild(rUSure);
+    dWrapper.appendChild(dYes);
+    dWrapper.appendChild(dNo);
+    rUSure.textContent = "Are you sure? You are deleting this person's profile";
+    dYes.textContent = "Yes";
+    dNo.textContent = "No";
+    dOverlay.classList.add("dDialouge");
+    dWrapper.id = "dWrapper";
+
+    const closeDelete = function () {
+      dWrapper.remove();
+      dOverlay.remove();
+    };
+
+    dYes.addEventListener("click", function () {
+      delete employeeID[copyeIDNumber.value];
+      dir_row.remove();
+      closeEditor();
+      closeDelete();
+    });
+
+    dNo.addEventListener("click", function () {
+      closeDelete();
+    });
+    dOverlay.addEventListener("click", function () {
+      closeDelete();
+    });
   });
 
   //click overlay to exit
