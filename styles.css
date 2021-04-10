@@ -6,9 +6,14 @@ body {
   background-color: white;
 }
 header {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  text-align: center;
+}
+header > h1 {
+  margin: 0;
+  padding: 0;
 }
 
 #container {
@@ -175,7 +180,6 @@ legend {
 }
 
 #dWrapper {
-  /* align-self: center; */
   padding: 10px;
   box-sizing: border-box;
   width: 200px;
