@@ -608,34 +608,38 @@ const profileEditor = function (
 
   //Delete Button
   deleteBtn.addEventListener("click", function () {
-    const dYes = document.createElement("button");
-    const dNo = document.createElement("button");
-    const dOverlay = document.createElement("div");
-    const dWrapper = document.createElement("div");
-    const rUSure = document.createElement("span");
-    const dBtnWrapper = document.createElement("div");
+    const dYes = document.createElement("button"),
+      dNo = document.createElement("button"),
+      dOverlay = document.createElement("div"),
+      dWrapper = document.createElement("div"),
+      rUSure = document.createElement("span"),
+      dBtnWrapper = document.createElement("div");
 
     editor.appendChild(dOverlay);
     editor.appendChild(dWrapper);
     dWrapper.appendChild(rUSure);
     dWrapper.appendChild(dBtnWrapper);
-
     dBtnWrapper.appendChild(dYes);
     dBtnWrapper.appendChild(dNo);
+
     rUSure.textContent = "Are you sure? You are deleting this person's profile";
     dYes.textContent = "Yes";
     dNo.textContent = "No";
+
     dOverlay.classList.add("dDialouge");
     dYes.classList.add("dbtn");
     dNo.classList.add("dbtn");
     dBtnWrapper.id = "dBtnWrapper";
     dWrapper.id = "dWrapper";
 
+    //Function to delete close dialouge
     const closeDelete = function () {
       dWrapper.remove();
       dOverlay.remove();
     };
-
+    //Button Yes
+    //Deleting Person's data on Directory and Object
+    //then will close the editor and delete dialouge
     dYes.addEventListener("click", function () {
       delete employeeID[copyeIDNumber.value];
       dir_row.remove();
@@ -643,9 +647,12 @@ const profileEditor = function (
       closeDelete();
     });
 
+    //Button No
     dNo.addEventListener("click", function () {
       closeDelete();
     });
+
+    //Delete dialouge overlay
     dOverlay.addEventListener("click", function () {
       closeDelete();
     });
