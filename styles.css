@@ -175,15 +175,30 @@ legend {
 }
 
 #dWrapper {
-  align-self: center;
-  padding: 5px;
+  /* align-self: center; */
+  padding: 10px;
   box-sizing: border-box;
-  width: 300px;
+  width: 200px;
   background-color: white;
   box-shadow: 0 2px 6px 0.1px black;
   z-index: 4;
   position: fixed;
+  border-radius: 5px;
+  text-align: center;
 }
+#dBtnWrapper {
+  margin-top: 5px;
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dbtn {
+  width: 40%;
+}
+/* #dWrapper > span {
+  display: block;
+} */
 .dDialouge {
   background-color: rgb(0, 0, 0, 0.5);
   width: 100vw;

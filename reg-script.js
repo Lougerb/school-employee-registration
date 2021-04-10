@@ -152,16 +152,18 @@ generateEID();
 
 //
 //Event to incriment employee number
-const regSubBtn = document.getElementById("submitButton");
-regSubBtn.addEventListener("click", function () {
-  empNum++;
-});
+// const regSubBtn = document.getElementById("submitButton");
+// regSubBtn.addEventListener("submit", function (e) {
+//   e.preventDefault();
+//   empNum++;
+// });
 
 //addEventListener must listen to the Form INSTEAD of the Submit Button of the form
 //Submit Button
 regForm.addEventListener("submit", function (e) {
   //To prevent page refresh when submit is clicked
   e.preventDefault();
+  empNum++;
   //Get Elements
   const getLName = document.getElementById("lName"),
     getFName = document.getElementById("fName"),
@@ -611,16 +613,22 @@ const profileEditor = function (
     const dOverlay = document.createElement("div");
     const dWrapper = document.createElement("div");
     const rUSure = document.createElement("span");
+    const dBtnWrapper = document.createElement("div");
 
     editor.appendChild(dOverlay);
     editor.appendChild(dWrapper);
     dWrapper.appendChild(rUSure);
-    dWrapper.appendChild(dYes);
-    dWrapper.appendChild(dNo);
+    dWrapper.appendChild(dBtnWrapper);
+
+    dBtnWrapper.appendChild(dYes);
+    dBtnWrapper.appendChild(dNo);
     rUSure.textContent = "Are you sure? You are deleting this person's profile";
     dYes.textContent = "Yes";
     dNo.textContent = "No";
     dOverlay.classList.add("dDialouge");
+    dYes.classList.add("dbtn");
+    dNo.classList.add("dbtn");
+    dBtnWrapper.id = "dBtnWrapper";
     dWrapper.id = "dWrapper";
 
     const closeDelete = function () {
