@@ -165,7 +165,9 @@ legend {
   box-shadow: 0 2px 6px 0.1px black;
   z-index: 2;
 }
-
+#empInfo th {
+  font-weight: normal;
+}
 .hideme {
   visibility: hidden;
 }

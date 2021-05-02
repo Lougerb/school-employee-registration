@@ -150,13 +150,35 @@ const generateEID = function () {
 //function to call to display Employee ID onload
 generateEID();
 
-//
-//Event to incriment employee number
-// const regSubBtn = document.getElementById("submitButton");
-// regSubBtn.addEventListener("submit", function (e) {
-//   e.preventDefault();
-//   empNum++;
-// });
+//Object
+//Storing Data
+const schoolEmployees = {
+  employeeID: {
+    //Dummy Employee Data
+    20010101: {
+      _Name: {
+        _fName: `Juan`,
+        _mName: `Julio`,
+        _lName: `Dela Cruz`,
+        _sName: ` `,
+      },
+      DOB: {
+        Month: `JAN`,
+        Day: `1`,
+        Year: `1991`,
+      },
+      Gender: `Male`,
+      Status: `Single`,
+      Position: `Teacher`,
+      Assigned_Level: `Grade 1`,
+      Subject: `Filipino`,
+      Email: `juanjdc@gmail.com`,
+    },
+  },
+};
+
+//Variable where we can call to store Data
+const { employeeID } = schoolEmployees;
 
 //addEventListener must listen to the Form INSTEAD of the Submit Button of the form
 //Submit Button
@@ -279,14 +301,6 @@ regForm.addEventListener("submit", function (e) {
   getGender.value = "";
   getStatus.value = "";
 });
-
-//Object
-//Storing Data
-const schoolEmployees = {
-  employeeID: {},
-};
-//Variable where we can call to store Data
-const { employeeID } = schoolEmployees;
 
 //Editor Function
 const profileEditor = function (
@@ -430,9 +444,7 @@ const profileEditor = function (
   editSGender.classList.add("inputBox", "sGender");
   editSStatus.classList.add("inputBox", "sStatus");
   //Functions for Dates
-  // window.addEventListener("load", function () {
   assignDay(editMMInput, editDDInput);
-  // });
   editMMInput.addEventListener("change", function () {
     assignDay(editMMInput, editDDInput);
   });
@@ -663,3 +675,49 @@ const profileEditor = function (
     closeEditor();
   });
 };
+//Dummy Profile
+const dProfile = document.getElementById("dummyProfile");
+const dummyID = Object.keys(employeeID)[0];
+const {
+    20010101: {
+      _Name: {
+        _fName: dummyFname,
+        _mName: dummyMname,
+        _lName: dummyLname,
+        _sName: dummySname,
+      },
+      DOB: { Month: dummyMonth, Day: dummyDay, Year: dummyYear },
+      Gender: dummyGender,
+      Status: dummyStatus,
+      Position: dummyPosition,
+      Assigned_Level: dummyLevel,
+      Subject: dummySubject,
+      Email: dummyEmail,
+    },
+  } = employeeID,
+  tDummyID = document.getElementById("dummyID").textContent,
+  tDummyFullName = document.getElementById("dummyFullName"),
+  tdummyPosition = document.getElementById("dummyPosition"),
+  tdummyRow = document.getElementById("dummyRow");
+
+dProfile.addEventListener("mouseup", function () {
+  profileEditor(
+    dummyFname,
+    dummyMname,
+    dummyLname,
+    dummySname,
+    dummyMonth,
+    dummyDay,
+    dummyYear,
+    dummyGender,
+    dummyStatus,
+    dummyPosition,
+    dummyLevel,
+    dummySubject,
+    dummyEmail,
+    tdummyRow,
+    tdummyPosition,
+    tDummyFullName,
+    tDummyID
+  );
+});

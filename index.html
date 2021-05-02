@@ -8,9 +8,7 @@
     <title>School Employee Registration</title>
   </head>
   <body>
-    <!-- Edit Dialouge -->
     <div id="editDialouge" class="hideme">
-      <!-- <form id="editForm"></form> -->
       <div id="editOverlay" class="overlayDialouge"></div>
     </div>
 
@@ -186,7 +184,14 @@
             <th>Action</th>
           </tr>
         </thead>
-        <tbody id="empInfo"></tbody>
+        <tbody id="empInfo">
+          <tr class="dataRow" id="dummyRow">
+            <th id="dummyID">20010101</th>
+            <th id="dummyFullName">Dela Cruz, Juan J.</th>
+            <th id="dummyPosition">Teacher</th>
+            <th><button id="dummyProfile">Edit</button></th>
+          </tr>
+        </tbody>
       </table>
     </div>
     <script src="reg-script.js"></script>
