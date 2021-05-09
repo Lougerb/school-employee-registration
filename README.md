@@ -19,4 +19,4 @@ This project is a webapp where a person in charge (Most probably the Human Resou
 - Properly converted some mis-capslocked letters or starting small letters to database and data table
   - Example: jUan deLa cruz **to** Juan Dela Cruz
 - Some selection option will be disabled on a specific Selected option
-  - Example: When HR registring a **Counselor** job position, **Assigned Level** and Subject** will be disabled, unless the job position is **Teacher**
+  - Example: When HR registring a **Counselor** job position, **Assigned Level** and **Subject** will be disabled, unless the job position is **Teacher**
